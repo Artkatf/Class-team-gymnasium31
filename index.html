@@ -1,101 +1,183 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Футбольные составы 7А–7З</title>
-<style>
-:root{--primary:#2c3e50;--accent:#e74c3c;--bg:#f4f4f4;--card-bg:#fff;--border:#ddd}
-body{font-family:Arial,sans-serif;margin:0;padding:0;background:var(--bg);color:#333}
-header{background:var(--primary);color:#fff;padding:1rem 0}
-.container{max-width:1200px;margin:auto;padding:0 1rem}
-nav.class-tabs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1.5rem}
-.class-tabs button{padding:.75rem 1.25rem;border:none;background:#fff;color:var(--primary);cursor:pointer;border-radius:6px;font-weight:600;font-size:1rem}
-.class-tabs button.active{background:var(--accent);color:#fff}
-.stats-table-wrapper{overflow-x:auto;margin-top:1.5rem}
-table{width:100%;border-collapse:collapse;background:var(--card-bg);box-shadow:0 2px 6px rgba(0,0,0,.1)}
-th,td{border:1px solid var(--border);padding:.6rem .8rem;text-align:center}
-th{background:var(--primary);color:#fff}
-.players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:2rem}
-.player-card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1rem;cursor:pointer;transition:transform .2s,box-shadow .2s;height:100%}
-.player-card:hover{transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.player-name{font-size:1.1rem;font-weight:bold;margin-bottom:.3rem}
-.player-pos{color:#555;font-size:.9rem;margin-bottom:.5rem}
-.player-num{display:inline-block;background:#eee;padding:2px 8px;border-radius:4px;font-weight:bold}
-.pagination{margin-top:1.5rem;display:flex;justify-content:center;gap:.5rem}
-.pagination button{padding:.5rem .8rem;border:1px solid var(--border);background:#fff;cursor:pointer;border-radius:4px}
-.pagination button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:center;z-index:1000}
-.modal-overlay.show{display:flex}
-.modal{background:#fff;width:90%;max-width:700px;padding:1.5rem;border-radius:12px;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto}
-.close-modal{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#888}
-.close-modal:hover{color:#000}
-.modal-photo-frame{width:400px;height:400px;background:#eee;border:2px solid #ccc;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;color:#777;font-size:.9rem;overflow:hidden}
-.modal-photo-frame img{width:100%;height:100%;object-fit:cover}
-@media(max-width:600px){.modal-photo-frame{width:200px;height:200px}.modal{width:95%}}
-.modal h2{margin-top:0}
-.modal-info-row{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
-.modal-field{flex:1 1 200px}
-.modal-field strong{display:block;color:#555;font-size:.85rem}
-.modal-field span{font-weight:bold}
-.modal-stats{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee}
-.contact-row{margin-top:1rem;padding:1rem;background:#f9f9f9;border-radius:8px;text-align:center}
-.contact-row strong{color:var(--primary)}
-</style>
+.error { color:#e74c3c; margin-top:5px; display:none }
+    .edit-badge { position:fixed; bottom:15px; right:15px; background:var(--a); color:#fff; padding:8px 15px; border-radius:20px; font-weight:bold; z-index:999; cursor:pointer; display:none }
+    [contenteditable] { outline:none; border:2px dashed var(--a); padding:2px; transition:.2s }
+    [contenteditable]:focus { background:#fffbeb; border-color:var(--p) }
+  </style>
 </head>
 <body>
-<header>
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h1 style="margin: 0; font-size: 1.4rem;">Футбольные составы 7А–7З</h1>
-    <h1 style="margin: 0; font-size: 1.4rem;">2027 сезон</h1>
+  <div class="landing" id="landing">
+    <h1>Футбольные составы 7А–7З</h1>
+    <p>Выберите режим доступа:</p>
+    <div class="landing-buttons">
+      <button class="btn btn-guest" id="btn-guest">Гость</button>
+      <button class="btn btn-dev" id="btn-dev">Разработчик</button>
+    </div>
+    <div id="dev-login" style="display:none;margin-top:30px">
+      <form class="login-form">
+        <input type="password" id="pass" placeholder="Пароль">
+        <button type="submit" class="btn btn-dev">Войти</button>
+        <div class="error" id="err">Неверный пароль</div>
+      </form>
+    </div>
   </div>
-</header>
-<div class="container">
-<nav class="class-tabs">
-<button class="tab-btn" data-class="7А">7А</button>
-<button class="tab-btn" data-class="7Б">7Б</button>
-<button class="tab-btn" data-class="7В">7В</button>
-<button class="tab-btn" data-class="7Г">7Г</button>
-<button class="tab-btn active" data-class="7Д">7Д</button>
-<button class="tab-btn" data-class="7Е">7Е</button>
-<button class="tab-btn" data-class="7Ж">7Ж</button>
-<button class="tab-btn" data-class="7З">7З</button>
-</nav><div class="stats-table-wrapper"><table><thead><tr><th>Класс</th><th>Игр</th><th>Победы</th><th>Ничьи</th><th>Поражения</th><th>Очки</th></tr></thead><tbody id="league-table"></tbody></table></div>
-<div class="players-grid" id="players-grid"></div>
-<div class="pagination" id="pagination"></div>
-</div>
-<div class="modal-overlay" id="player-modal">
-<div class="modal">
-<button class="close-modal" id="close-modal">&times;</button>
-<div class="modal-photo-frame" id="modal-photo-frame">Фото 400×400</div>
-<h2 id="modal-name">Имя Фамилия</h2>
-<p><strong>Позиция:</strong> <span id="modal-pos">—</span> | <strong>Класс:</strong> <span id="modal-class">—</span></p>
-<div class="modal-info-row">
-<div class="modal-field"><strong>Номер:</strong><br><span id="modal-num">—</span></div>
-<div class="modal-field"><strong>Год рождения:</strong><br><span id="modal-dob">—</span></div>
-<div class="modal-field"><strong>Возраст:</strong><br><span id="modal-age">—</span></div>
-<div class="modal-field"><strong>Трансфер:</strong><br><span id="modal-transfer">—</span></div>
-</div>
-<div id="modal-contact-block" class="contact-row" style="display:none">
-<strong>Связаться с игроком:</strong><br>
-<span id="modal-contact-phone" style="font-size:1.2rem;color:var(--primary);font-weight:bold"></span>
-</div>
-<div class="modal-stats"><h3>Статистика</h3><p id="modal-stat-line">—</p></div>
-</div>
-</div>
-<script>
-const playersData={'7А':[],'7Б':[{name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6Г → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},,{name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',saves:'-',conceded:'-'},photo:'ekf.jpg',contactPhone:'-'}],'7В':[],'7Г':[],'7Д':[{name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},{name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'pos.jpg',contactPhone:'-'},{name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'gran.jpg',contactPhone:'-'},{name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'kly.jpg',contactPhone:'-'},{name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',saves:'-',conceded:'-'},photo:'smirn.jpg',contactPhone:'-'}],'7Е':[{name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'Остался в 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',saves:'-',conceded:'-'},contactPhone:'-'}],'7Ж':[],'7З':[]};
-const leagueData=[{cls:'7А',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7Б',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7В',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7Г',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7Д',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7Е',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7Ж',g:'-',w:'-',d:'-',l:'-',pts:'-'},{cls:'7З',g:'-',w:'-',d:'-',l:'-',pts:'-'}];
-const PAGE_SIZE=12;let currentClass='7Д';let currentPage=1;
-function renderLeagueTable(){const tb=document.querySelector('#league-table');tb.innerHTML='';leagueData.forEach(r=>{const tr=document.createElement('tr');const a=r.cls===currentClass?' style="background:#ffe6e6"':'';tr.innerHTML='<td'+a+'>'+r.cls+'</td><td>'+r.g+'</td><td>'+r.w+'</td><td>'+r.d+'</td><td>'+r.l+'</td><td>'+r.pts+'</td>';tb.appendChild(tr)})}
-function renderPlayersGrid(){const grid=document.getElementById('players-grid');const players=playersData[currentClass]||[];const start=(currentPage-1)*PAGE_SIZE;const end=start+PAGE_SIZE;const pp=players.slice(start,end);grid.innerHTML='';if(players.length===0){grid.innerHTML='<p style="color:#777;grid-column:1/-1;text-align:center">Состав ещё не заполнен</p>';document.getElementById('pagination').innerHTML='';return}pp.forEach(p=>{const card=document.createElement('div');card.className='player-card';card.onclick=()=>openPlayerModal(p);card.innerHTML='<div class="player-name">'+p.name+'</div><div class="player-pos">'+p.pos+'</div><div><span class="player-num">'+p.num+'</span></div>';grid.appendChild(card)});renderPagination(players.length)}function renderPagination(total){const el=document.getElementById('pagination');el.innerHTML='';const tp=Math.max(1,Math.ceil(total/PAGE_SIZE));if(tp<=1)return;for(let i=1;i<=tp;i++){const btn=document.createElement('button');btn.textContent=i;btn.className=i===currentPage?'active':'';btn.onclick=()=>{currentPage=i;renderPlayersGrid()};el.appendChild(btn)}}
-function openPlayerModal(player){document.getElementById('player-modal').classList.add('show');document.getElementById('modal-name').textContent=player.name;document.getElementById('modal-pos').textContent=player.pos;document.getElementById('modal-num').textContent=player.num;document.getElementById('modal-class').textContent=currentClass;document.getElementById('modal-dob').textContent=player.dob;document.getElementById('modal-age').textContent=new Date().getFullYear()-player.dob;document.getElementById('modal-transfer').textContent=player.transfer;const cb=document.getElementById('modal-contact-block');const cp=document.getElementById('modal-contact-phone');if(player.contactPhone){cb.style.display='block';cp.textContent=player.contactPhone}else{cb.style.display='none'}const mf=document.getElementById('modal-photo-frame');if(player.photo){mf.innerHTML='<img src="'+player.photo+'" alt="'+player.name+'">'}else{mf.innerHTML='Нет фото'}let st='';if((player.pos||'').toLowerCase().indexOf('вратарь')!==-1){st='Матчи: '+player.stats.matches+' | Сейвы: '+player.stats.saves+' | Пропущено: '+player.stats.conceded}else{st='Матчи: '+player.stats.matches+' | Голы: '+player.stats.goals+' | Ассисты: '+player.stats.assists}document.getElementById('modal-stat-line').textContent=st}
-function closeModal(){document.getElementById('player-modal').classList.remove('show')}
-document.getElementById('close-modal').addEventListener('click',closeModal);
-document.getElementById('player-modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentClass=btn.getAttribute('data-class');currentPage=1;renderLeagueTable();renderPlayersGrid()})});
-renderLeagueTable();renderPlayersGrid();
-</script>
+
+  <header>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <h1>Футбольные составы 7А–7З</h1>
+      <h1>2027 сезон</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="class-tabs">
+      <button class="tab-btn" data-class="7А">7А</button>
+      <button class="tab-btn" data-class="7Б">7Б</button>
+      <button class="tab-btn" data-class="7В">7В</button>
+      <button class="tab-btn" data-class="7Г">7Г</button>
+      <button class="tab-btn active" data-class="7Д">7Д</button>
+      <button class="tab-btn" data-class="7Е">7Е</button>
+      <button class="tab-btn" data-class="7Ж">7Ж</button>
+      <button class="tab-btn" data-class="7З">7З</button>
+    </nav>
+
+    <div class="stats-table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Класс</th><th>Игр</th><th>Победы</th><th>Ничьи</th><th>Поражения</th><th>Очки</th>
+          </tr>
+        </thead>
+        <tbody id="league-table"></tbody>
+      </table>
+    </div>
+
+    <div class="players-grid" id="players-grid"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <div class="modal-overlay" id="player-modal">
+    <div class="modal">
+      <button class="close-modal" id="close-modal">&times;</button>
+      <div class="modal-photo" id="modal-photo"></div>
+      <h2 id="modal-name">Имя Фамилия</h2>
+      <p><strong>Позиция:</strong> <span id="modal-pos">—</span> | <strong>Класс:</strong> <span id="modal-class">—</span></p>
+      <div class="modal-info-row">
+        <div class="modal-field"><strong>Номер:</strong><br><span id="modal-num">—</span></div>
+        <div class="modal-field"><strong>Год рождения:</strong><br><span id="modal-dob">—</span></div>
+        <div class="modal-field"><strong>Возраст:</strong><br><span id="modal-age">—</span></div>
+        <div class="modal-field"><strong>Трансфер:</strong><br><span id="modal-transfer">—</span></div>
+      </div>
+      <div id="modal-contact" class="contact-row" style="display:none">
+        <strong>Связаться с игроком:</strong><br>
+        <span id="modal-phone" style="font-size:1.2rem;color:var(--p);font-weight:bold"></span>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee">
+        <h3>Статистика</h3>
+        <p id="modal-stat">—</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit-badge" id="edit-badge">Режим редактирования</div><script>
+    const playersData = {
+      '7А': [],
+      '7Б': [
+        {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6Г → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',saves:'-',conceded:'-'},photo:'ekf.jpg',contactPhone:'-'}
+      ],
+      '7В': [],
+      '7Г': [],
+      '7Д': [
+        {name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},
+        {name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'pos.jpg',contactPhone:'-'},
+        {name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'gran.jpg',contactPhone:'-'},
+        {name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'kly.jpg',contactPhone:'-'},
+        {name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',saves:'-',conceded:'-'},photo:'smirn.jpg',contactPhone:'-'}
+      ],
+      '7Е': [
+        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'Остался в 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',saves:'-',conceded:'-'},contactPhone:'-'}
+      ],
+      '7Ж': [],
+      '7З': []
+    };
+
+    const leagueData = [
+      {cls:'7А',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7Б',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7В',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7Г',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7Д',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7Е',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7Ж',g:'-',w:'-',d:'-',l:'-',pts:'-'},
+      {cls:'7З',g:'-',w:'-',d:'-',l:'-',pts:'-'}
+    ];
+
+    const PAGE_SIZE = 12;
+    let currentClass = '7Д';
+    let currentPage = 1;
+    let isDev = false;
+
+    const landing = document.getElementById('landing');
+    const devLogin = document.getElementById('dev-login');
+    const pass = document.getElementById('pass');
+    const err = document.getElementById('err');
+
+    document.getElementById('btn-guest').addEventListener('click', () => {
+      landing.style.display = 'none';
+    });
+
+    document.getElementById('btn-dev').addEventListener('click', () => {
+      devLogin.style.display = '';
+    });
+
+    document.querySelector('.login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      if (pass.value === '10330art') {
+        landing.style.display = 'none';
+        isDev = true;
+        document.getElementById('edit-badge').style.display = 'block';
+      } else {
+        err.style.display = 'block';
+      }
+    });photoEl.innerHTML = photo ? `<img src="${photo}" alt="${name}">` : '<span style="color:#777">Фото не загружено</span>';
+
+      let statsStr = '-';
+      try {
+        const stats = JSON.parse(statsJson);
+        const parts = [];
+        if (stats.matches !== undefined) parts.push(`Игр: ${stats.matches}`);
+        if (stats.goals !== undefined) parts.push(`Голов: ${stats.goals}`);
+        if (stats.assists !== undefined) parts.push(`Пасов: ${stats.assists}`);
+        if (stats.saves !== undefined) parts.push(`Сейвов: ${stats.saves}`);
+        if (stats.conceded !== undefined) parts.push(`Пропущено: ${stats.conceded}`);
+        statsStr = parts.length ? parts.join(', ') : '-';
+      } catch (e) {
+        statsStr = '-';
+      }
+      statEl.textContent = statsStr;
+
+      contactRow.style.display = contact && contact !== '-' ? 'block' : 'none';
+      phoneEl.textContent = contact && contact !== '-' ? contact : '';
+
+      modal.classList.add('show');
+    };
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('show');
+    });// Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTable();
+      renderPlayers();
+    });
+  </script>
 </body>
 </html>
