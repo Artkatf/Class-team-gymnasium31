@@ -10,22 +10,32 @@
     .container { max-width:1200px; margin:auto; padding:0 1rem }
     header { background:var(--p); color:#fff; padding:1rem 0 }
     h1 { margin:0; font-size:1.4rem }
+
+    /* Вкладки классов */
     .class-tabs { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-top:1.5rem }
     .tab-btn { padding:.75rem 1.25rem; border:none; background:#fff; color:var(--p); cursor:pointer; border-radius:6px; font-weight:600 }
     .tab-btn.active { background:var(--a); color:#fff }
+
+    /* Таблица */
     .stats-table-wrapper { overflow-x:auto; margin-top:1.5rem }
     table { width:100%; border-collapse:collapse; background:var(--card); box-shadow:0 2px 6px rgba(0,0,0,.1) }
     th,td { border:1px solid var(--b); padding:.6rem .8rem; text-align:center }
     th { background:var(--p); color:#fff }
+
+    /* Сетка игроков */
     .players-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; margin-top:2rem }
     .player-card { background:var(--card); border:1px solid var(--b); border-radius:8px; padding:1rem; cursor:pointer; transition:.2s }
     .player-card:hover { transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,.15) }
     .player-name { font-size:1.1rem; font-weight:bold; margin-bottom:.3rem }
     .player-pos { color:#555; font-size:.9rem; margin-bottom:.5rem }
     .player-num { display:inline-block; background:#eee; padding:2px 8px; border-radius:4px; font-weight:bold }
+
+    /* Пагинация */
     .pagination { margin-top:1.5rem; display:flex; justify-content:center; gap:.5rem }
     .pagination button { padding:.5rem .8rem; border:1px solid var(--b); background:#fff; cursor:pointer; border-radius:4px }
     .pagination button.active { background:var(--p); color:#fff; border-color:var(--p) }
+
+    /* Модальные окна */
     .modal-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); display:none; justify-content:center; align-items:center; z-index:1000 }
     .modal-overlay.show { display:flex }
     .modal { background:#fff; width:90%; max-width:700px; padding:1.5rem; border-radius:12px; position:relative; box-shadow:0 8px 24px rgba(0,0,0,.2); max-height:90vh; overflow-y:auto }
@@ -37,24 +47,27 @@
     .modal-field { flex:1 1 200px }
     .modal-field strong { display:block; color:#555; font-size:.85rem }
     .contact-row { margin-top:1rem; padding:1rem; background:#f9f9f9; border-radius:8px; text-align:center }
-    .match-center-bar { position:fixed; bottom:20px; right:20px; z-index:900; }
+
+    /* Плашка «Матч-центр» — слева сверху */
+    .match-center-bar { position:fixed; top:80px; left:20px; z-index:900; }
     .match-center-btn { background:var(--a); color:#fff; border:none; padding:1rem 1.5rem; border-radius:50px; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,.3) }
+
+    /* Экран входа (landing) */
     .landing { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:2000; display:flex; flex-direction:column; justify-content:center; align-items:center }
     .landing h1 { font-size:2rem; margin-bottom:.5rem }
-    .landing-buttons { margin:1rem 0; display:flex; gap:1rem }
-    .btn { padding:.8rem 1.5rem; border:none; border-radius:8px; cursor:pointer; font-weight:bold }
+    .landing-buttons { margin:1rem 0; display:flex; gap:1rem }.btn { padding:.8rem 1.5rem; border:none; border-radius:8px; cursor:pointer; font-weight:bold }
     .btn-guest { background:#2ecc71; color:#fff }
-    .btn-dev { background:#9b59b6; color:#fff }.login-form { display:flex; flex-direction:column; gap:.5rem; align-items:center }
+    .btn-dev { background:#9b59b6; color:#fff }
+    .login-form { display:flex; flex-direction:column; gap:.5rem; align-items:center }
     .error { color:#e74c3c; display:none }
     .edit-badge { position:fixed; top:10px; left:10px; background:var(--a); color:#fff; padding:.5rem 1rem; border-radius:20px; font-size:.9rem; z-index:1001; box-shadow:0 2px 5px rgba(0,0,0,.2) }
   </style>
 </head>
 <body>
 
-  <!-- Плашка матч‑центра -->
-  <div class="match-center-bar" id="matchCenterBar">
+  <!-- Плашка матч‑центра — слева сверху -->
+  <div class="match-center-bar">
     <button class="match-center-btn" id="btnMatchCenter">Матч‑центр</button>
-    <span class="match-center-text" style="position:absolute;left:-180px;font-size:.8rem;color:#777">Наведите, чтобы открыть панель</span>
   </div>
 
   <!-- Экран входа (landing) -->
@@ -134,8 +147,8 @@
 
   <!-- Модальное окно матч‑центра -->
   <div class="modal-overlay" id="matchCenterModal">
-    <div class="modal" style="max-width:500px">
-      <button class="close-modal" id="closeMatchCenter">&times;</button><h2>Матч‑центр</h2>
+    <div class="modal" style="max-width:500px"><button class="close-modal" id="closeMatchCenter">&times;</button>
+      <h2>Матч‑центр</h2>
       <p style="color:#555">Сетка матчей между классами 7А–7З сейчас недоступна.</p>
       <p style="font-size:.9em;color:#777">Функция находится в разработке. Скоро появится расписание и результаты игр.</p>
     </div>
@@ -144,10 +157,11 @@
   <div class="edit-badge" id="edit-badge" style="display:none">Режим редактирования</div>
 
 <script>
+  // Данные игроков — строго по твоему плану
   const playersData = {
     '7А': [],
     '7Б': [
-      {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6Г → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+      {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
       {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
       {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',saves:'-',conceded:'-'},photo:'ekf.jpg',contactPhone:'-'}
     ],
@@ -164,50 +178,43 @@
       {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
       {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
       {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-      {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'}
-    ],
-    '7Ж': [],
-    '7З': []
-  };
+      {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
+      {name:'Петров Илья',pos:'Полузащитник',num:8,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'}
+    ],'7Ж': [],
+      '7З': []
+    };
 
-  const itemsPerPage = 8;
-  let currentPage = 1;
-  let currentClass = '7Д';
+    const itemsPerPage = 8;
+    let currentPage = 1;
+    let currentClass = '7Д';
 
-  // Вкладки классов
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentClass = btn.getAttribute('data-class');
-      currentPage = 1;
-      renderTable();
-      renderPlayers();
+    // --- Вкладки классов ---
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentClass = btn.getAttribute('data-class');
+        currentPage = 1;
+        renderTable();
+        renderPlayers();
+      });
     });
-  });
 
-  // Рендер турнирной таблицы
-  function renderTable() {
-    const tbody = document.getElementById('league-table');
-    if (!tbody) return;
-    tbody.innerHTML = '';Object.keys(playersData).forEach(cls => {
-        const players = playersData[cls];
-        // Считаем матчи как количество игроков (для примера)
-        const matches = players.length;
-        // Простая логика: 40% побед, 30% ничьих, остальное поражения
-        const wins = Math.floor(matches * 0.4);
-        const draws = Math.floor(matches * 0.3);
-        const losses = matches - wins - draws;
-        const points = wins * 3 + draws;
+    // --- Рендер турнирной таблицы (везде прочерки, матчей ещё не было) ---
+    function renderTable() {
+      const tbody = document.getElementById('league-table');
+      if (!tbody) return;
+      tbody.innerHTML = '';
 
+      Object.keys(playersData).forEach(cls => {
         const row = `
           <tr>
             <td>${cls}</td>
-            <td>${matches}</td>
-            <td>${wins}</td>
-            <td>${draws}</td>
-            <td>${losses}</td>
-            <td>${points}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
           </tr>
         `;
         tbody.innerHTML += row;
@@ -287,9 +294,7 @@
       }
 
       document.getElementById('modal-stat').innerText =
-        `Матчи: ${player.stats.matches || '-' }, Голы: ${player.stats.goals || '-' }, Пасы: ${player.stats.assists || '-' }`;
-
-      modal.classList.add('show');
+        `Матчи: ${player.stats.matches || '-' }, Голы: ${player.stats.goals || '-' }, Пасы: ${player.stats.assists || '-' }`;modal.classList.add('show');
     }
 
     // --- Закрытие модальных окон ---
@@ -297,7 +302,18 @@
       document.getElementById('player-modal').classList.remove('show');
     });
 
-    document.getElementById('closeMatchCenter').addEventListener('click', () => {document.getElementById('matchCenterModal').classList.remove('show');
+    document.getElementById('closeMatchCenter').addEventListener('click', () => {
+      document.getElementById('matchCenterModal').classList.remove('show');
+    });
+
+    // Закрываем по клику вне окна
+    document.addEventListener('click', e => {
+      if (e.target === document.getElementById('player-modal')) {
+        document.getElementById('player-modal').classList.remove('show');
+      }
+      if (e.target === document.getElementById('matchCenterModal')) {
+        document.getElementById('matchCenterModal').classList.remove('show');
+      }
     });
 
     // --- Экран входа (landing) ---
