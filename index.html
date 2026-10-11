@@ -1,4 +1,49 @@
-.error { color:#e74c3c; margin-top:5px; display:none }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Футбольные составы 7А–7З</title>
+  <style>
+    :root { --p:#2c3e50; --a:#e74c3c; --bg:#f4f4f4; --card:#fff; --b:#ddd }
+    body { font-family:Arial,sans-serif; margin:0; background:var(--bg); color:#333 }
+    .container { max-width:1200px; margin:auto; padding:0 1rem }
+    header { background:var(--p); color:#fff; padding:1rem 0 }
+    h1 { margin:0; font-size:1.4rem }
+    .class-tabs { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-top:1.5rem }
+    .tab-btn { padding:.75rem 1.25rem; border:none; background:#fff; color:var(--p); cursor:pointer; border-radius:6px; font-weight:600 }
+    .tab-btn.active { background:var(--a); color:#fff }
+    .stats-table-wrapper { overflow-x:auto; margin-top:1.5rem }
+    table { width:100%; border-collapse:collapse; background:var(--card); box-shadow:0 2px 6px rgba(0,0,0,.1) }
+    th,td { border:1px solid var(--b); padding:.6rem .8rem; text-align:center }
+    th { background:var(--p); color:#fff }
+    .players-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; margin-top:2rem }
+    .player-card { background:var(--card); border:1px solid var(--b); border-radius:8px; padding:1rem; cursor:pointer; transition:.2s }
+    .player-card:hover { transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,.15) }
+    .player-name { font-size:1.1rem; font-weight:bold; margin-bottom:.3rem }
+    .player-pos { color:#555; font-size:.9rem; margin-bottom:.5rem }
+    .player-num { display:inline-block; background:#eee; padding:2px 8px; border-radius:4px; font-weight:bold }
+    .pagination { margin-top:1.5rem; display:flex; justify-content:center; gap:.5rem }
+    .pagination button { padding:.5rem .8rem; border:1px solid var(--b); background:#fff; cursor:pointer; border-radius:4px }
+    .pagination button.active { background:var(--p); color:#fff; border-color:var(--p) }
+    .modal-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); display:none; justify-content:center; align-items:center; z-index:1000 }
+    .modal-overlay.show { display:flex }
+    .modal { background:#fff; width:90%; max-width:700px; padding:1.5rem; border-radius:12px; position:relative; box-shadow:0 8px 24px rgba(0,0,0,.2); max-height:90vh; overflow-y:auto }
+    .close-modal { position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#888 }
+    .modal-photo { width:400px; height:400px; background:#eee; border:2px solid #ccc; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; color:#777; font-size:.9rem; overflow:hidden }
+    .modal-photo img { width:100%; height:100%; object-fit:cover }
+    @media(max-width:600px) { .modal-photo{width:200px;height:200px}; .modal{width:95%} }
+    .modal-info-row { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1rem }
+    .modal-field { flex:1 1 200px }
+    .modal-field strong { display:block; color:#555; font-size:.85rem }
+    .contact-row { margin-top:1rem; padding:1rem; background:#f9f9f9; border-radius:8px; text-align:center }
+    .landing { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:2000; display:flex; flex-direction:column; justify-content:center; align-items:center }
+    .landing-buttons { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin:1rem 0 }
+    .btn { padding:15px 30px; font-size:18px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; color:#fff }
+    .btn-guest { background:#3498db }
+    .btn-dev { background:#2ecc71 }
+    .login-form { display:flex; flex-direction:column; align-items:center; gap:10px; max-width:300px; width:100%; margin-top:30px }
+    .login-form input { padding:10px; border:1px solid #ddd; border-radius:6px; width:100% }.error { color:#e74c3c; margin-top:5px; display:none }
     .edit-badge { position:fixed; bottom:15px; right:15px; background:var(--a); color:#fff; padding:8px 15px; border-radius:20px; font-weight:bold; z-index:999; cursor:pointer; display:none }
     [contenteditable] { outline:none; border:2px dashed var(--a); padding:2px; transition:.2s }
     [contenteditable]:focus { background:#fffbeb; border-color:var(--p) }
