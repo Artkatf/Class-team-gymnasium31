@@ -189,7 +189,102 @@
       } else {
         err.style.display = 'block';
       }
-    });photoEl.innerHTML = photo ? `<img src="${photo}" alt="${name}">` : '<span style="color:#777">Фото не загружено</span>';
+    });document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentClass = btn.getAttribute('data-class');
+        currentPage = 1;
+        renderTable();
+        renderPlayers();
+      });
+    });
+
+    function renderTable() {
+      const tbody = document.getElementById('league-table');
+      tbody.innerHTML = leagueData.map(r => `
+        <tr${r.cls === currentClass ? ' class="current-class"' : ''}>
+          <td>${r.cls}</td>
+          <td>${r.g}</td>
+          <td>${r.w}</td>
+          <td>${r.d}</td>
+          <td>${r.l}</td>
+          <td>${r.pts}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderPlayers() {
+      const grid = document.getElementById('players-grid');
+      const pagination = document.getElementById('pagination');
+      const players = playersData[currentClass] || [];
+      const totalPages = Math.max(1, Math.ceil(players.length / PAGE_SIZE));
+
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const pagePlayers = players.slice(start, start + PAGE_SIZE);
+
+      grid.innerHTML = pagePlayers.map(p => {
+        const photoHtml = p.photo ? `<img src="${p.photo}" alt="${p.name}">` : '<span>Нет фото</span>';
+        return `
+          <div class="player-card" ${isDev ? 'contenteditable="true"' : ''}
+            onclick="openModal('${escapeHtml(p.name)}', '${escapeHtml(p.pos)}', '${currentClass}', ${p.num}, ${p.dob}, '${escapeHtml(p.transfer)}', '${JSON.stringify(p.stats).replace(/"/g, '&quot;')}', '${p.photo || ''}', '${p.contactPhone || ''}')">
+            ${isDev ? '<span style="float:right;color:orange;font-size:.7em">✎</span>' : ''}
+            <div class="player-name">${escapeHtml(p.name)}</div>
+            <div class="player-pos">${escapeHtml(p.pos)}</div>
+            <span class="player-num">${p.num}</span>
+          </div>
+        `;
+      }).join('');
+
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (i === currentPage) btn.classList.add('active');
+        btn.onclick = () => {
+          currentPage = i;
+          renderPlayers();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        pagination.appendChild(btn);
+      }
+
+      if (totalPages === 1) pagination.style.display = 'none';
+      else pagination.style.display = 'flex';
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    const modal = document.getElementById('player-modal');
+    const closeBtn = document.getElementById('close-modal');
+    const photoEl = document.getElementById('modal-photo');
+    const nameEl = document.getElementById('modal-name');
+    const posEl = document.getElementById('modal-pos');
+    const classEl = document.getElementById('modal-class');
+    const numEl = document.getElementById('modal-num');
+    const dobEl = document.getElementById('modal-dob');
+    const ageEl = document.getElementById('modal-age');
+    const transferEl = document.getElementById('modal-transfer');
+    const contactRow = document.getElementById('modal-contact');
+    const phoneEl = document.getElementById('modal-phone');
+    const statEl = document.getElementById('modal-stat');
+
+    window.openModal = function(name, pos, cls, num, dob, transfer, statsJson, photo, contact) {
+      nameEl.textContent = escapeHtml(name);
+      posEl.textContent = escapeHtml(pos);
+      classEl.textContent = cls;
+      numEl.textContent = num;
+      dobEl.textContent = dob;
+      ageEl.textContent = new Date().getFullYear() - dob;
+      transferEl.textContent = escapeHtml(transfer);photoEl.innerHTML = photo ? `<img src="${photo}" alt="${name}">` : '<span style="color:#777">Фото не загружено</span>';
 
       let statsStr = '-';
       try {
