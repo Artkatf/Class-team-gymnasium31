@@ -15,7 +15,6 @@
     }
     body { font-family: sans-serif; margin: 0; background: var(--bg); color: var(--text); }
     
-    /* Header & Menu */
     header { background: var(--card); padding: 15px; border-bottom: 1px solid var(--border); }
     .main-menu { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 10px 0; }
     .menu-item {
@@ -28,7 +27,6 @@
     .menu-icon { width: 40px; height: 40px; margin-bottom: 8px; opacity: 0.8; }
     .menu-icon svg { width: 100%; height: 100%; fill: currentColor; }
 
-    /* Tabs */
     .class-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; overflow-x: auto; padding-bottom: 10px; }
     .tab-btn {
       padding: 8px 16px; border: 1px solid var(--border); background: var(--card);
@@ -37,7 +35,6 @@
     .tab-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
     .tab-btn:hover { border-color: var(--accent); color: var(--text); }
 
-    /* Grid & Cards */
     .players-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 16px; margin-top: 20px;
@@ -52,7 +49,6 @@
     .p-name { font-weight: 600; margin-bottom: 4px; }
     .p-pos { font-size: 0.85rem; color: var(--gray); }
 
-    /* Pagination */
     .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
     .pagination button {
       padding: 6px 12px; border: 1px solid var(--border); background: var(--card);
@@ -60,13 +56,11 @@
     }
     .pagination button.active { background: var(--accent); color: #000; }
 
-    /* Table */
     .stats-table-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 8px; border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; background: var(--card); }
     th, td { border: 1px solid var(--border); padding: 10px; text-align: center; font-size: 0.9rem; }
     th { background: #252930; color: var(--gray); text-transform: uppercase; }
 
-    /* Modal */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.8);
       display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -86,17 +80,15 @@
       align-items: center; justify-content: center; overflow: hidden;
     }
     .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .no-photo { color: var(--gray); font-weight: bold; }.modal-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-    .modal-info div { border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+    .no-photo { color: var(--gray); font-weight: bold; }
+    .modal-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }.modal-info div { border-bottom: 1px solid var(--border); padding-bottom: 5px; }
     .modal-info strong { display: block; color: var(--gray); font-size: 0.8rem; }
     .modal-info span { color: var(--text); }
 
-    /* Views Logic */
     .view-block { display: none; }
     .view-block.active-view { display: block; animation: fadeIn 0.3s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Club Select Overlay */
     .select-club-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.9);
       display: none; align-items: center; justify-content: center; z-index: 2000;
@@ -127,7 +119,6 @@
     </div>
   </header>
 
-  <!-- Club Select Overlay -->
   <div class="select-club-overlay" id="selectClubOverlay">
     <div class="select-club-box">
       <h2>Выбери свой клуб</h2>
@@ -137,7 +128,6 @@
     </div>
   </div>
 
-  <!-- Main Menu -->
   <nav class="main-menu">
     <button class="menu-item active" data-view="home">
       <div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg></div>
@@ -157,42 +147,34 @@
     </button>
   </nav>
 
-  <!-- Content Area -->
   <div style="max-width:1200px;margin:0 auto;padding:0 15px;">
-    
-    <!-- Tabs Container (Visible only on Home/MyClub) -->
     <div class="class-tabs" id="classTabs"></div>
 
-    <!-- VIEW: HOME / MY CLUB -->
     <div id="view-home" class="view-block active-view">
       <div class="players-grid" id="players-grid"></div>
       <div class="pagination" id="pagination"></div>
       <div class="stats-table-wrapper">
-        <table><thead><tr><th>Класс</th><th>Игр</th><th>Победы</th><th>Ничьи</th><th>Поражения</th><th>Очки</th></tr></thead>
+        <table>
+          <thead><tr><th>Класс</th><th>Игр</th><th>Победы</th><th>Ничьи</th><th>Поражения</th><th>Очки</th></tr></thead>
           <tbody id="league-table"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- VIEW: MATCHES -->
     <div id="view-matches" class="view-block">
       <div style="padding:40px;text-align:center;color:var(--gray)">
-        <h3 style="color:var(--text);margin:0 0 10px">Матчи</h3>
-        Расписание появится ближе к старту сезона.
+        <h3 style="color:var(--text);margin:0 0 10px">Матчи</h3>Расписание появится ближе к старту сезона.
       </div>
     </div>
 
-    <!-- VIEW: STATS -->
     <div id="view-stats" class="view-block">
       <div style="padding:40px;text-align:center;color:var(--gray)">
         <h3 style="color:var(--text);margin:0 0 10px">Статистика</h3>
         Пока все показатели равны нулю — сезон не стартовал.
       </div>
     </div>
-
   </div>
 
-  <!-- Modal -->
   <div class="modal-overlay" id="player-modal">
     <div class="modal">
       <button class="close-modal" id="close-modal">&times;</button>
@@ -200,9 +182,7 @@
       <div style="color:var(--gray);margin-bottom:15px">
         <strong>Позиция:</strong> <span id="modal-pos"></span> | <strong>Класс:</strong> <span id="modal-class"></span>
       </div>
-      <div class="modal-photo" id="modal-photo">
-        <!-- Image will be injected here -->
-      </div>
+      <div class="modal-photo" id="modal-photo"></div>
       <div class="modal-info">
         <div><strong>№</strong><br><span id="modal-num"></span></div>
         <div><strong>Год рождения</strong><br><span id="modal-dob"></span></div>
@@ -224,7 +204,7 @@
       '7А': ,
       '7Б': [
         {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'},
-        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',photo:'-',contactPhone:'-'},
+        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',photo:'',contactPhone:'-'},
         {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'}
       ],
       '7В': ,
@@ -237,30 +217,30 @@
         {name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',photo:'smirn.jpg',contactPhone:'-'}
       ],
       '7Е': [
-        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'}
+        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'',contactPhone:'-'},
+        {name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'',contactPhone:'-'},
+        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'',contactPhone:'-'},
+        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'',contactPhone:'-'},
+        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'',contactPhone:'-'}
       ],
       '7Ж': ,
       '7З': 
-    };const classesList = ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'];
+    };
+
+    const classesList = ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'];
     const itemsPerPage = 8;
     
     let currentPage = 1;
     let currentClass = '7Д';
     let myClubClass = localStorage.getItem('myClubClass');
 
-    // --- Init Club Select ---
     if (!myClubClass) {
       document.getElementById('selectClubOverlay').classList.add('show');
       const list = document.getElementById('clubList');
       classesList.forEach(cls => {
         const btn = document.createElement('button');
         btn.className = 'select-club-btn';
-        btn.textContent = cls;
-        btn.onclick = () => {
+        btn.textContent = cls;btn.onclick = () => {
           document.querySelectorAll('.select-club-btn').forEach(b => b.classList.remove('selected'));
           btn.classList.add('selected');
           myClubClass = cls;
@@ -278,7 +258,6 @@
       currentClass = myClubClass;
     }
 
-    // --- Render Tabs ---
     function renderClassTabs() {
       const container = document.getElementById('classTabs');
       container.innerHTML = '';
@@ -298,42 +277,33 @@
       });
     }
 
-    // --- Switch Views (Fixed Logic) ---
     function switchView(view) {
-      // Hide all view blocks
       document.querySelectorAll('.view-block').forEach(el => el.classList.remove('active-view'));
-      // Reset menu buttons
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
       
-      // Activate new view
       const targetBlock = document.getElementById(`view-\${view}`);
       if (targetBlock) targetBlock.classList.add('active-view');
       
-      // Activate menu button
       const activeBtn = Array.from(document.querySelectorAll('.menu-item'))
         .find(el => el.getAttribute('data-view') === view);
       if (activeBtn) activeBtn.classList.add('active');
 
-      // Special logic for My Club and Home
       if (view === 'my-club' && myClubClass) {
         currentClass = myClubClass;
         renderClassTabs();
         renderPlayers();
         renderTable();
       } else if (view === 'home') {
-        // Just ensure tabs are correct for currentClass
         renderClassTabs();
         renderPlayers();
         renderTable();
       }
-      // Matches and Stats are static, no render needed
     }
 
     document.querySelectorAll('.menu-item[data-view]').forEach(btn => {
       btn.addEventListener('click', () => switchView(btn.getAttribute('data-view')));
     });
 
-    // --- Render Players ---
     function renderPlayers() {
       const grid = document.getElementById('players-grid');
       const players = playersData[currentClass] || ;
@@ -351,7 +321,8 @@
       paginatedPlayers.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
-        card.onclick = () => openPlayerModal(player);card.innerHTML = `
+        card.onclick = () => openPlayerModal(player);
+        card.innerHTML = `
           <div class="p-num">\${player.num}</div>
           <div class="p-name">\${player.name}</div>
           <div class="p-pos">\${player.pos}</div>`;
@@ -379,8 +350,7 @@
     }
 
     function renderTable() {
-      const tbody = document.getElementById('league-table');
-      if (!tbody) return;
+      const tbody = document.getElementById('league-table');if (!tbody) return;
       tbody.innerHTML = '';
       classesList.forEach(cls => {
         const tr = document.createElement('tr');
@@ -389,7 +359,6 @@
       });
     }
 
-    // --- Modal Logic ---
     function openPlayerModal(player) {
       const modal = document.getElementById('player-modal');
       const photoContainer = document.getElementById('modal-photo');
@@ -414,7 +383,7 @@
       }
 
       photoContainer.innerHTML = '';
-      if (player.photo && player.photo !== '-') {
+      if (player.photo && player.photo !== '') {
         const img = document.createElement('img');
         img.src = player.photo;
         img.alt = player.name;
@@ -436,7 +405,6 @@
       if (e.key === 'Escape') document.getElementById('player-modal').classList.remove('show');
     });
 
-    // --- Init ---
     renderClassTabs();
     switchView('home');
   </script>
