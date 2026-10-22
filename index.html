@@ -12,7 +12,6 @@
       --vhl-text: #ffffff;
       --vhl-gray: #a0a0a0;
       --vhl-border: #2a2e36;
-      --vhl-num-bg: #000000;
     }
 
     body {
@@ -59,7 +58,7 @@
       padding: 16px;
       border-radius: 16px;
       margin: 24px auto;
-      max-width: 1000px;
+      max-width: 1100px;
       display: flex;
       justify-content: center;
       gap: 32px;
@@ -112,6 +111,47 @@
       line-height: 1.2;
     }
 
+    /* Окно выбора «Мой клуб» */
+    .select-club-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .select-club-overlay.show {
+      display: flex;
+    }
+    .select-club-box {
+      background: var(--vhl-card);
+      border: 1px solid var(--vhl-border);
+      border-radius: 16px;
+      padding: 24px;
+      width: 400px;
+      text-align: center;
+    }
+    .select-club-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .select-club-btn {
+      padding: 8px;
+      border: 1px solid var(--vhl-border);
+      background: transparent;
+      color: var(--vhl-text);
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .select-club-btn.selected {
+      background: var(--vhl-accent);
+      color: #000;
+      border-color: var(--vhl-accent);
+    }
+
     .class-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -121,11 +161,9 @@
       overflow-x: auto;
       scrollbar-width: none;
     }
-
     .class-tabs::-webkit-scrollbar {
       display: none;
     }
-
     .tab-btn {
       padding: 8px 16px;
       border: 1px solid var(--vhl-border);
@@ -137,16 +175,13 @@
       font-size: 0.9rem;
       transition: all 0.2s;
     }
-
     .tab-btn:hover {
       border-color: var(--vhl-accent);
       color: var(--vhl-text);
     }
-
     .tab-btn.active {
       background: var(--vhl-accent);
-      color: #000;
-      border-color: var(--vhl-accent);
+      color: #000;border-color: var(--vhl-accent);
     }
 
     .stats-table-wrapper {
@@ -155,20 +190,17 @@
       border-radius: 8px;
       border: 1px solid var(--vhl-border);
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       background: var(--vhl-card);
     }
-
     th, td {
       border: 1px solid var(--vhl-border);
       padding: 10px 12px;
       text-align: center;
       font-size: 0.85rem;
     }
-
     th {
       background: #252930;
       color: var(--vhl-gray);
@@ -182,40 +214,36 @@
       gap: 16px;
       margin-top: 24px;
     }
-
     .player-card {
       background: var(--vhl-card);
       border: 1px solid var(--vhl-border);
       border-radius: 12px;
       padding: 16px;
-      cursor: pointer;transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
     }
-
     .player-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-
     .player-num {
       font-size: 1.4rem;
       font-weight: bold;
       color: var(--vhl-accent);
       margin-bottom: 8px;
     }
-
     .player-name {
       font-weight: 600;
       margin-bottom: 4px;
     }
-
     .player-pos {
       font-size: 0.8rem;
       color: var(--vhl-gray);
     }
 
-    /* Модальное окно */
+    /* Модальное окно игрока */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -228,7 +256,6 @@
     .modal-overlay.show {
       display: flex;
     }
-
     .modal {
       background: var(--vhl-card);
       border: 1px solid var(--vhl-border);
@@ -237,7 +264,6 @@
       width: 560px;
       position: relative;
     }
-
     .close-modal {
       position: absolute;
       top: 12px;
@@ -248,12 +274,9 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .close-modal:hover {
       color: var(--vhl-text);
     }
-
-    /* Фото 400x400 */
     .modal-photo {
       width: 400px;
       height: 400px;
@@ -266,34 +289,28 @@
       overflow: hidden;
       border: 1px solid var(--vhl-border);
     }
-
     .modal-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .modal-placeholder {
       color: var(--vhl-gray);
     }
-
     .modal-info-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 16px;
     }
-
     .modal-field strong {
       display: block;
       color: var(--vhl-gray);
     }
-
     .modal-stat-block h3 {
       margin-top: 0;
       margin-bottom: 8px;
     }
-
     .modal-stat-text {
       white-space: pre-wrap;
       color: var(--vhl-gray);
@@ -306,7 +323,6 @@
       margin-top: 24px;
       flex-wrap: wrap;
     }
-
     .pagination button {
       padding: 6px 12px;
       border: 1px solid var(--vhl-border);
@@ -315,7 +331,6 @@
       cursor: pointer;
       border-radius: 6px;
     }
-
     .pagination button.active {
       background: var(--vhl-accent);
       color: #000;
@@ -332,81 +347,115 @@
     </div>
   </header>
 
+  <!-- Меню сверху -->
   <nav class="main-menu">
-    <button type="button" class="menu-item active" data-view="home">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg>
-      </div>
+    <button type="button" class="menu-item active" data-view="home"><div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg></div>
       <span class="menu-label">Главная</span>
     </button>
 
+    <button type="button" class="menu-item" data-view="my-club">
+      <div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-4 1.5-2h5L11 17zm1-4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+      <span class="menu-label">Мой клуб</span>
+    </button>
+
     <button type="button" class="menu-item" data-view="matches">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-      </div>
+      <div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></div>
       <span class="menu-label">Матчи</span>
     </button>
 
     <button type="button" class="menu-item" data-view="stats">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M16 11.41l-4-4H7l5 5v5h4v-4zM21 16V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0h-3v-2h3v2zm-4 0h-3v-2h3v2zm-4 0H5v-6h11v2h-3v3z"/></svg>
-      </div>
+      <div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M16 11.41l-4-4H7l5 5v5h4v-4zM21 16V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0h-3v-2h3v2zm-4 0h-3v-2h3v2zm-4 0H5v-6h11v2h-3v3z"/></svg></div>
       <span class="menu-label">Статистика</span>
     </button>
-  </nav><!-- Вкладки классов -->
-  <div class="container">
-    <nav class="class-tabs">
-      <button class="tab-btn active" data-class="7А">7А</button>
-      <button class="tab-btn" data-class="7Б">7Б</button>
-      <button class="tab-btn" data-class="7В">7В</button>
-      <button class="tab-btn" data-class="7Г">7Г</button>
-      <button class="tab-btn" data-class="7Д">7Д</button>
-      <button class="tab-btn" data-class="7Е">7Е</button>
-      <button class="tab-btn" data-class="7Ж">7Ж</button>
-      <button class="tab-btn" data-class="7З">7З</button>
-    </nav>
+  </nav>
 
-    <!-- Блок для контента (таблицы/матчи/статистика) -->
-    <div class="stats-table-wrapper" id="content-area">
-      <!-- Сюда JS будет подставлять нужный контент -->
+  <!-- Выбор «Мой клуб» (показывается только если не выбран) -->
+  <div class="select-club-overlay" id="selectClubOverlay">
+    <div class="select-club-box">
+      <h2>Выбери свой клуб</h2>
+      <p style="color:var(--vhl-gray)">Этот выбор сохранится в браузере</p>
+      <div class="select-club-list" id="clubList">
+        <!-- Сюда JS добавит кнопки классов -->
+      </div><button type="button" id="saveClubBtn" style="
+        margin-top:16px;
+        padding:10px 20px;
+        background:var(--vhl-accent);
+        color:#000;
+        border:none;
+        border-radius:6px;
+        font-weight:600;
+        cursor:pointer;
+      ">Сохранить выбор</button>
+    </div>
+  </div>
+
+  <!-- Вкладки классов -->
+  <div class="container">
+    <div class="class-tabs" id="classTabs">
+      <!-- Сюда JS добавит кнопки 7А–7З -->
     </div>
 
-    <!-- Сетка игроков (будет скрыта, когда не на вкладке Главная) -->
-    <div class="players-grid" id="players-grid"></div>
-    <div class="pagination" id="pagination"></div>
+    <!-- Область контента -->
+    <div id="content-area">
+      <div class="players-grid" id="players-grid"></div>
+      <div class="pagination" id="pagination"></div>
+
+      <div class="stats-table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Класс</th>
+              <th>Игр</th>
+              <th>Победы</th>
+              <th>Ничьи</th>
+              <th>Поражения</th>
+              <th>Очки</th>
+            </tr>
+          </thead>
+          <tbody id="league-table"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- Модальное окно игрока -->
   <div class="modal-overlay" id="player-modal">
     <div class="modal">
       <button class="close-modal" id="close-modal">&times;</button>
-      <div class="modal-photo" id="modal-photo"></div>
       <h2 id="modal-name" style="margin:0 0 8px;color:var(--vhl-text)"></h2>
-      <p style="margin:0 0 16px;color:var(--vhl-gray)">
-        <strong>Позиция:</strong> <span id="modal-pos">—</span> | <strong>Класс:</strong> <span id="modal-class">—</span>
-      </p>
+      <div style="color:var(--vhl-gray);margin-bottom:12px">
+        <strong>Позиция:</strong> <span id="modal-pos"></span> | 
+        <strong>Класс:</strong> <span id="modal-class"></span>
+      </div>
+
+      <div class="modal-photo" id="modal-photo">
+        <!-- Фото или заглушка -->
+      </div>
+
       <div class="modal-info-row">
         <div class="modal-field">
-          <strong>Номер:</strong><br>
-          <span id="modal-num">—</span>
+          <strong>№</strong><br>
+          <span id="modal-num" style="font-size:1.2rem;color:var(--vhl-accent)"></span>
         </div>
         <div class="modal-field">
-          <strong>Год рождения:</strong><br>
-          <span id="modal-dob">—</span>
+          <strong>Год рождения</strong><br>
+          <span id="modal-dob"></span>
         </div>
         <div class="modal-field">
-          <strong>Возраст:</strong><br>
-          <span id="modal-age">—</span>
+          <strong>Возраст</strong><br>
+          <span id="modal-age"></span>
         </div>
         <div class="modal-field">
-          <strong>Трансфер:</strong><br>
-          <span id="modal-transfer">—</span>
+          <strong>Переход</strong><br>
+          <span id="modal-transfer"></span>
         </div>
       </div>
-      <div id="modal-contact" class="contact-row" style="display:none;margin-bottom:16px">
-        <strong>Связаться с игроком:</strong><br>
-        <span id="modal-phone" style="font-size:1.1rem;color:var(--vhl-accent);font-weight:700"></span>
-      </div><div class="modal-stat-block">
+
+      <div id="modal-contact" style="display:none;margin-top:12px;padding:12px;background:#252930;border-radius:8px">
+        <strong>Контакт:</strong> <span id="modal-phone" style="color:var(--vhl-accent)"></span>
+      </div>
+
+      <div class="modal-stat-block">
         <h3>Статистика (сезон не стартовал)</h3>
         <p id="modal-stat" class="modal-stat-text">
           Матчи: —<br>
@@ -436,8 +485,7 @@
         {name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',photo:'smirn.jpg',contactPhone:'-'}
       ],
       '7Е': [
-        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},{name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'}
@@ -446,12 +494,64 @@
       '7З': []
     };
 
+    const classesList = ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'];
     const itemsPerPage = 8;
+    
     let currentPage = 1;
-    let currentClass = '7Д';
+    let currentClass = '7Д'; // по умолчанию
     let currentView = 'home';
+    let myClubClass = localStorage.getItem('myClubClass'); // читаем сохранённый выбор
 
-    // Переключение вкладок меню (Главная / Матчи / Статистика)
+    // Если ранее не выбирали — покажем окно выбора
+    if (!myClubClass) {
+      document.getElementById('selectClubOverlay').classList.add('show');
+      const list = document.getElementById('clubList');
+      classesList.forEach(cls => {
+        const btn = document.createElement('button');
+        btn.className = 'select-club-btn';
+        btn.textContent = cls;
+        btn.onclick = () => {
+          document.querySelectorAll('.select-club-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          myClubClass = cls;
+        };
+        list.appendChild(btn);
+      });
+
+      document.getElementById('saveClubBtn').onclick = () => {
+        if (myClubClass) {
+          localStorage.setItem('myClubClass', myClubClass);
+          document.getElementById('selectClubOverlay').classList.remove('show');
+          switchView('my-club'); // сразу открыть «Мой клуб»
+        }
+      };
+    } else {
+      // Если уже выбрали — сразу ставим этот класс как «Мой клуб» при клике
+      currentClass = myClubClass;
+    }
+
+    function renderClassTabs() {
+      const container = document.getElementById('classTabs');
+      container.innerHTML = '';
+      classesList.forEach(cls => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn';
+        btn.textContent = cls;
+        btn.setAttribute('data-class', cls);
+        if (cls === currentClass) btn.classList.add('active');
+        
+        btn.onclick = () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentClass = cls;
+          currentPage = 1; // сброс на первую страницу
+          renderPlayers();
+          renderTable();
+        };
+        container.appendChild(btn);
+      });
+    }
+
     function switchView(view) {
       currentView = view;
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
@@ -464,14 +564,22 @@
       const playersGrid = document.getElementById('players-grid');
       const pagination = document.getElementById('pagination');
 
-      // Скрываем всё по умолчанию
       if (tabs) tabs.style.display = 'none';
       if (playersGrid) playersGrid.style.display = 'none';
       if (pagination) pagination.style.display = 'none';
 
-      if (view === 'home') {
-        if (tabs) tabs.style.display = 'flex';
-        if (playersGrid) playersGrid.style.display = 'grid';
+      if (view === 'home' || view === 'my-club') {
+        // Если «Мой клуб», ставим нужный класс
+        if (view === 'my-club' && myClubClass) {
+          currentClass = myClubClass;
+          // обновляем выделение вкладки
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          const myClubBtn = Array.from(document.querySelectorAll('.tab-btn'))
+            .find(b => b.getAttribute('data-class') === myClubClass);
+          if (myClubBtn) myClubBtn.classList.add('active');
+        }
+
+        if (tabs) tabs.style.display = 'flex';if (playersGrid) playersGrid.style.display = 'grid';
         if (pagination) pagination.style.display = 'flex';
         renderPlayers();
         renderTable();
@@ -480,8 +588,7 @@
           <div style="padding:24px;color:var(--vhl-text)">
             <h3 style="margin:0 0 12px">Матчи</h3>
             <p style="color:var(--vhl-gray)">Расписание появится ближе к старту сезона.</p>
-          </div>
-        `;
+          </div>`;
       } else if (view === 'stats') {
         const tableHtml = renderTableHTML();
         contentArea.innerHTML = `
@@ -489,24 +596,13 @@
             <h3 style="margin:0 0 12px">Общая статистика</h3>
             <p style="color:var(--vhl-gray)">Пока все показатели равны нулю — сезон не стартовал.</p>
             ${tableHtml}
-          </div>
-        `;
-      }}
+          </div>`;
+      }
+    }
 
     document.querySelectorAll('.menu-item[data-view]').forEach(btn => {
       btn.addEventListener('click', () => {
         switchView(btn.getAttribute('data-view'));
-      });
-    });
-
-    // Вкладки классов
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentClass = btn.getAttribute('data-class');
-        renderPlayers();
-        renderTable();
       });
     });
 
@@ -530,8 +626,7 @@
         card.innerHTML = `
           <div class="player-num">${player.num}</div>
           <div class="player-name">${player.name}</div>
-          <div class="player-pos">${player.pos}</div>
-        `;
+          <div class="player-pos">${player.pos}</div>`;
         grid.appendChild(card);
       });
       renderPagination(players.length);
@@ -560,16 +655,9 @@
       const tbody = document.getElementById('league-table');
       if (!tbody) return;
       tbody.innerHTML = '';
-      ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'].forEach(cls => {
+      classesList.forEach(cls => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${cls}</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        `;
+        tr.innerHTML = `<td>${cls}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>`;
         tbody.appendChild(tr);
       });
     }
@@ -585,11 +673,11 @@
             <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Поражения</th>
             <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Очки</th>
           </tr>
-        </thead>
-        <tbody>`;
-      ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'].forEach(cls => {
+        </thead><tbody>`;
+      classesList.forEach(cls => {
         html += `<tr style="border:1px solid var(--vhl-border)">
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">${cls}</td><td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">${cls}</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
           <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
           <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
           <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
@@ -598,53 +686,73 @@
       });
       html += `</tbody></table>`;
       return html;
-    }
-
-    function openPlayerModal(player) {
+    }function openPlayerModal(player) {
       const modal = document.getElementById('player-modal');
-      const photo = document.getElementById('modal-photo');
+      const photoContainer = document.getElementById('modal-photo');
+      
       document.getElementById('modal-name').textContent = player.name;
       document.getElementById('modal-pos').textContent = player.pos;
       document.getElementById('modal-class').textContent = currentClass;
       document.getElementById('modal-num').textContent = player.num;
       document.getElementById('modal-dob').textContent = player.dob;
-      document.getElementById('modal-age').textContent = new Date().getFullYear() - player.dob;
-      document.getElementById('modal-transfer').textContent = player.transfer;
-      document.getElementById('modal-stat').innerHTML = 'Матчи: —<br>Голы: —<br>Пасы: —<br>Сэйвы: —';
+      
+      // Считаем возраст примерно (2027 - год рождения)
+      const age = 2027 - (player.dob || 0);
+      document.getElementById('modal-age').textContent = age > 0 ? age + ' лет' : '—';
+      
+      document.getElementById('modal-transfer').textContent = player.transfer || '—';
 
-      const contactRow = document.getElementById('modal-contact');
+      // Контакт показываем только если есть и не прочерк
+      const contactBlock = document.getElementById('modal-contact');
+      const contactSpan = document.getElementById('modal-phone');
       if (player.contactPhone && player.contactPhone !== '-') {
-        contactRow.style.display = 'block';
-        document.getElementById('modal-phone').textContent = player.contactPhone;
+        contactSpan.textContent = player.contactPhone;
+        contactBlock.style.display = 'block';
       } else {
-        contactRow.style.display = 'none';
+        contactBlock.style.display = 'none';
       }
 
-      photo.innerHTML = '';
+      // Фото: если есть имя файла — ставим, иначе заглушка
+      photoContainer.innerHTML = '';
       if (player.photo && player.photo !== '-') {
         const img = document.createElement('img');
         img.src = player.photo;
         img.alt = player.name;
-        photo.appendChild(img);
+        photoContainer.appendChild(img);
       } else {
-        photo.innerHTML = '<span class="modal-placeholder">Фото не загружено</span>';
+        const placeholder = document.createElement('div');
+        placeholder.className = 'modal-placeholder';
+        placeholder.textContent = 'Фото отсутствует';
+        photoContainer.appendChild(placeholder);
       }
 
       modal.classList.add('show');
     }
 
+    // Закрытие модального окна
     document.getElementById('close-modal').addEventListener('click', () => {
       document.getElementById('player-modal').classList.remove('show');
     });
 
-    window.addEventListener('keydown', e => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         document.getElementById('player-modal').classList.remove('show');
       }
     });
 
-    // Инициализация
-    switchView('home');
+    // Инициализация при загрузке
+    renderClassTabs();
+    
+    // Если уже был выбран «Мой клуб», сразу ставим его активным на вкладках
+    if (myClubClass) {
+      currentClass = myClubClass;
+      renderClassTabs();
+      switchView('home'); // показываем главную с выбранным классом
+    } else {
+      // Если не выбран — окно выбора уже открыто, ничего не делаем
+      switchView('home');
+    }
   </script>
 </body>
-</html>
+</html>   
+     
