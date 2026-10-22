@@ -341,20 +341,28 @@
       color: #000;
       border-color: var(--vhl-accent);
     }
+
+    /* Блоки для разных видов (чтобы не затирать всё innerHTML) */
+    .view-block {
+      display: none; /* скрыто по умолчанию */
+    }
+    .view-block.active-view {
+      display: block; /* видно, когда активно */
+    }
   </style>
 </head>
 <body>
 
   <header>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-      <h1>Футбольные составы 7А–7З</h1>
-      <h1 style="font-size:1rem;color:var(--vhl-gray)">2027 сезон</h1>
+      <h1>Футбольные составы 7А–7З</h1><h1 style="font-size:1rem;color:var(--vhl-gray)">2027 сезон</h1>
     </div>
   </header>
 
   <!-- Меню сверху -->
   <nav class="main-menu">
-    <button type="button" class="menu-item active" data-view="home"><div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg></div>
+    <button type="button" class="menu-item active" data-view="home">
+      <div class="menu-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg></div>
       <span class="menu-label">Главная</span>
     </button>
 
@@ -393,13 +401,12 @@
     </div>
   </div>
 
-  <!-- Вкладки классов и контент --><div class="container">
-    <div class="class-tabs" id="classTabs">
-      <!-- Сюда JS добавит кнопки 7А–7З -->
-    </div>
+  <!-- Основной контент: разные виды (не перезаписываем innerHTML, просто переключаем классы) -->
+  <div class="container">
+    <div class="class-tabs" id="classTabs"></div>
 
-    <!-- Область контента -->
-    <div id="content-area">
+    <!-- Главная / Мой клуб: состав + таблица -->
+    <div id="view-home" class="view-block active-view">
       <div class="players-grid" id="players-grid"></div>
       <div class="pagination" id="pagination"></div>
 
@@ -417,6 +424,37 @@
           </thead>
           <tbody id="league-table"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- Матчи -->
+    <div id="view-matches" class="view-block">
+      <div style="padding:24px;color:var(--vhl-text)">
+        <h3 style="margin:0 0 12px">Матчи</h3>
+        <p style="color:var(--vhl-gray)">Расписание появится ближе к старту сезона.</p>
+      </div>
+    </div>
+
+    <!-- Статистика -->
+    <div id="view-stats" class="view-block">
+      <div style="padding:24px;color:var(--vhl-text)">
+        <h3 style="margin:0 0 12px">Общая статистика</h3>
+        <p style="color:var(--vhl-gray)">Пока все показатели равны нулю — сезон не стартовал.</p>
+        <div class="stats-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Класс</th>
+                <th>Игр</th>
+                <th>Победы</th>
+                <th>Ничьи</th>
+                <th>Поражения</th>
+                <th>Очки</th>
+              </tr>
+            </thead>
+            <tbody id="stats-league-table"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -475,8 +513,7 @@
       '7А': [],
       '7Б': [
         {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'},
-        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',photo:'-',contactPhone:'-'},
-        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'}
+        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',photo:'-',contactPhone:'-'},{name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'}
       ],
       '7В': [],
       '7Г': [],
@@ -490,7 +527,8 @@
       '7Е': [
         {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},{name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'}
       ],
       '7Ж': [],
@@ -502,7 +540,6 @@
     
     let currentPage = 1;
     let currentClass = '7Д';
-    let currentView = 'home';
     let myClubClass = localStorage.getItem('myClubClass');
 
     // Если ранее не выбирали — покажем окно выбора
@@ -555,52 +592,36 @@
     }
 
     function switchView(view) {
-      currentView = view;
+      // Убираем active у всех view-block
+      document.querySelectorAll('.view-block').forEach(el => el.classList.remove('active-view'));
+      // Убираем active у кнопок меню
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+
+      // Находим нужную кнопку меню и ставим active
       const activeBtn = Array.from(document.querySelectorAll('.menu-item'))
         .find(el => el.getAttribute('data-view') === view);
       if (activeBtn) activeBtn.classList.add('active');
 
-      const tabs = document.querySelector('.class-tabs');
-      const contentArea = document.getElementById('content-area');
-      const playersGrid = document.getElementById('players-grid');
-      const pagination = document.getElementById('pagination');
+      // Показываем нужный блокconst targetBlock = document.getElementById(`view-${view}`);
+      if (targetBlock) {
+        targetBlock.classList.add('active-view');
+      }
 
-      // Скрываем всё по умолчанию
-      if (tabs) tabs.style.display = 'none';
-      if (playersGrid) playersGrid.style.display = 'none';
-      if (pagination) pagination.style.display = 'none';
-
-      if (view === 'home' || view === 'my-club') {
-        // Если «Мой клуб», ставим нужный класс
-        if (view === 'my-club' && myClubClass) {
-          currentClass = myClubClass;
-          // обновляем выделение вкладки
-          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-          const myClubBtn = Array.from(document.querySelectorAll('.tab-btn'))
-            .find(b => b.getAttribute('data-class') === myClubClass);
-          if (myClubBtn) myClubBtn.classList.add('active');
-        }
-
-        if (tabs) tabs.style.display = 'flex';
-        if (playersGrid) playersGrid.style.display = 'grid';
-        if (pagination) pagination.style.display = 'flex';
+      // Если это «Мой клуб» — ставим нужный класс и обновляем вкладки
+      if (view === 'my-club' && myClubClass) {
+        currentClass = myClubClass;
+        renderClassTabs();
         renderPlayers();
         renderTable();
-      } else if (view === 'matches') {
-        contentArea.innerHTML = `
-          <div style="padding:24px;color:var(--vhl-text)">
-            <h3 style="margin:0 0 12px">Матчи</h3><p style="color:var(--vhl-gray)">Расписание появится ближе к старту сезона.</p>
-          </div>`;
-      } else if (view === 'stats') {
-        const tableHtml = renderTableHTML();
-        contentArea.innerHTML = `
-          <div style="padding:24px;color:var(--vhl-text)">
-            <h3 style="margin:0 0 12px">Общая статистика</h3>
-            <p style="color:var(--vhl-gray)">Пока все показатели равны нулю — сезон не стартовал.</p>
-            ${tableHtml}
-          </div>`;
+      } 
+      // Если «Главная» — показываем текущий класс (может быть тот, что выбран в «Мой клуб»)
+      else if (view === 'home') {
+        // Вкладки уже отрисованы, просто убедимся, что активная кнопка стоит верно
+        renderClassTabs();
+        renderPlayers();
+        renderTable();
       }
+      // Для «Матчи» и «Статистика» ничего дополнительно рендерить не надо — там статичные блоки
     }
 
     document.querySelectorAll('.menu-item[data-view]').forEach(btn => {
@@ -665,32 +686,6 @@
       });
     }
 
-    function renderTableHTML() {
-      let html = `<table style="width:100%;border-collapse:collapse;background:var(--vhl-card)">
-        <thead>
-          <tr>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Класс</th>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Игр</th>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Победы</th>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Ничьи</th>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Поражения</th>
-            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Очки</th>
-          </tr>
-        </thead>
-        <tbody>`;
-      classesList.forEach(cls => {
-        html += `<tr style="border:1px solid var(--vhl-border)">
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">${cls}</td>
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td><td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
-          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
-        </tr>`;
-      });
-      html += `</tbody></table>`;
-      return html;
-    }
-
     function openPlayerModal(player) {
       const modal = document.getElementById('player-modal');
       const photoContainer = document.getElementById('modal-photo');
@@ -706,15 +701,14 @@
       
       document.getElementById('modal-transfer').textContent = player.transfer || '—';
 
-      const contactBlock = document.getElementById('modal-contact');const contactSpan = document.getElementById('modal-phone');
+      const contactBlock = document.getElementById('modal-contact');
+      const contactSpan = document.getElementById('modal-phone');
       if (player.contactPhone && player.contactPhone !== '-') {
-        contactSpan.textContent = player.contactPhone;
-        contactBlock.style.display = 'block';
+        contactSpan.textContent = player.contactPhone;contactBlock.style.display = 'block';
       } else {
         contactBlock.style.display = 'none';
       }
 
-      // Фото: если есть имя файла — ставим, иначе заглушка
       photoContainer.innerHTML = '';
       if (player.photo && player.photo !== '-') {
         const img = document.createElement('img');
@@ -743,18 +737,9 @@
       }
     });
 
-    // Инициализация при загрузке
+    // Инициализация
     renderClassTabs();
-    
-    // Если уже был выбран «Мой клуб», сразу ставим его активным на вкладках и показываем состав
-    if (myClubClass) {
-      currentClass = myClubClass;
-      renderClassTabs();
-      switchView('home'); // показываем главную с выбранным классом
-    } else {
-      // Если не выбран — окно выбора уже открыто, ничего не делаем
-      switchView('home');
-    }
+    switchView('home');
   </script>
 </body>
 </html>
