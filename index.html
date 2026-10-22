@@ -29,7 +29,6 @@
       padding: 0 16px;
     }
 
-    /* Header */
     header {
       background: var(--vhl-card);
       color: var(--vhl-text);
@@ -55,7 +54,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Main Menu (4 buttons) */
     .main-menu {
       background: var(--vhl-card);
       padding: 16px;
@@ -114,7 +112,6 @@
       line-height: 1.2;
     }
 
-    /* Class Tabs */
     .class-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -152,7 +149,6 @@
       border-color: var(--vhl-accent);
     }
 
-    /* League Table */
     .stats-table-wrapper {
       overflow-x: auto;
       margin-top: 16px;
@@ -180,7 +176,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Players Grid */
     .players-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -190,10 +185,10 @@
 
     .player-card {
       background: var(--vhl-card);
-      border: 1px solid var(--vhl-border);border-radius: 12px;
+      border: 1px solid var(--vhl-border);
+      border-radius: 12px;
       padding: 16px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -234,7 +229,6 @@
       word-wrap: break-word;
     }
 
-    /* Pagination */
     .pagination {
       margin-top: 24px;
       display: flex;
@@ -264,7 +258,6 @@
       color: var(--vhl-text);
     }
 
-    /* Modal Overlay (Player) */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -313,7 +306,6 @@
       color: var(--vhl-text);
     }
 
-    /* Modal Photo */
     .modal-photo {
       width: 100%;
       height: 240px;
@@ -338,7 +330,6 @@
       font-size: 0.9rem;
     }
 
-    /* Modal Info */
     .modal-info-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -380,15 +371,16 @@
       color: var(--vhl-accent);
       font-weight: 700;
       font-size: 1.1rem;
-    }.modal-stat-block {
+    }
+
+    .modal-stat-block {
       margin-top: 20px;
       padding-top: 16px;
       border-top: 1px solid var(--vhl-border);
     }
 
     .modal-stat-block h3 {
-      margin: 0 0 12px;
-      color: var(--vhl-text);
+      margin: 0 0 12px;color: var(--vhl-text);
       font-size: 1rem;
     }
 
@@ -397,120 +389,6 @@
       font-size: 0.9rem;
     }
 
-    /* Landing Page */
-    .landing {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--vhl-bg);
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--vhl-text);
-    }
-
-    .landing h1 {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
-    .landing p {
-      color: var(--vhl-gray);
-      margin-bottom: 24px;
-    }
-
-    .landing-buttons {
-      margin: 1rem 0;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn {
-      padding: 10px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-
-    .btn-guest {
-      background: var(--vhl-accent);
-      color: #000;
-    }
-
-    .btn-guest:hover {
-      background: #ff6b6b;
-    }
-
-    .btn-dev {
-      background: #5d40e6;
-      color: #fff;
-    }
-
-    .btn-dev:hover {
-      background: #6f56ff;
-    }
-
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 30px;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .login-form input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--vhl-border);
-      background: var(--vhl-card);
-      color: var(--vhl-text);
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-
-    .login-form button {
-      width: 100%;
-      padding: 10px;
-      background: var(--vhl-accent);
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .error {
-      color: var(--vhl-accent);
-      display: none;
-      margin-top: 8px;
-      font-size: 0.85rem;
-    }
-
-    .edit-badge {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: var(--vhl-accent);
-      color: #000;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      z-index: 1001;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      font-weight: 700;
-    }
-
-    /* --- NEW: Modal for Class Selection (My Club) --- */
     .class-select-modal-overlay {
       position: fixed;
       top: 0;
@@ -576,7 +454,8 @@
 
     .class-btn.active {
       background: var(--vhl-accent);
-      color: #000;border-color: var(--vhl-accent);
+      color: #000;
+      border-color: var(--vhl-accent);
     }
 
     .close-select-modal {
@@ -616,12 +495,10 @@
   </style>
 </head>
 <body>
-
-  <!-- Главное меню (4 кнопки) -->
   <nav class="main-menu">
     <a href="index.html" class="menu-item active">
       <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg>
+        <svg viewBox="0 0 24 210-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg>
       </div>
       <span class="menu-label">Главная</span>
     </a>
@@ -631,15 +508,12 @@
       </div>
       <span class="menu-label">Матчи</span>
     </a>
-    
-    <!-- Кнопка "Мой клуб" теперь триггер модального окна -->
     <div class="menu-item" id="my-club-trigger" style="cursor:pointer;">
       <div class="menu-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-4 1.5-2h5L11 17zm1-4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
       </div>
       <span class="menu-label">Мой клуб</span>
     </div>
-
     <a href="stats.html" class="menu-item">
       <div class="menu-icon">
         <svg viewBox="0 0 24 24"><path d="M16 11.41l-4-4H7l5 5v5h4v-4zM21 16V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0h-3v-2h3v2zm-4 0h-3v-2h3v2zm-4 0H5v-6h11v2h-3v3z"/></svg>
@@ -648,38 +522,18 @@
     </a>
   </nav>
 
-  <!-- Модальное окно выбора класса (Мой клуб) -->
   <div class="class-select-modal-overlay" id="class-select-overlay">
     <div class="class-select-modal">
       <button class="close-select-modal" id="close-select-modal">&times;</button>
       <h2>Выберите свой класс</h2>
-      <div class="class-grid" id="class-grid">
-        <!-- Кнопки классов будут сгенерированы JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Экран входа (landing) -->
-  <div class="landing" id="landing">
-    <h1>Футбольные составы 7А–7З</h1>
-    <p>Выберите режим доступа:</p>
-    <div class="landing-buttons">
-      <button class="btn btn-guest" id="btn-guest">Гость</button>
-      <button class="btn btn-dev" id="btn-dev">Разработчик</button>
-    </div>
-    <div id="dev-login" style="display:none;margin-top:30px">
-      <form class="login-form">
-        <input type="password" id="pass" placeholder="Пароль" />
-        <button type="submit" class="btn">Войти</button>
-        <div class="error" id="err">Неверный пароль</div>
-      </form>
+      <div class="class-grid" id="class-grid"></div>
     </div>
   </div>
 
   <header>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
       <h1>Футбольные составы 7А–7З</h1>
-      <h1>2027 сезон</h1>
+      <h1>2027 сезон (сезон ещё не начался)</h1>
     </div>
   </header>
 
@@ -693,7 +547,9 @@
       <button class="tab-btn" data-class="7Е">7Е</button>
       <button class="tab-btn" data-class="7Ж">7Ж</button>
       <button class="tab-btn" data-class="7З">7З</button>
-    </nav><div class="stats-table-wrapper">
+    </nav>
+
+    <div class="stats-table-wrapper">
       <table>
         <thead>
           <tr>
@@ -713,12 +569,11 @@
     <div class="pagination" id="pagination"></div>
   </div>
 
-  <!-- Модальное окно игрока -->
   <div class="modal-overlay" id="player-modal">
     <div class="modal">
       <button class="close-modal" id="close-modal">&times;</button>
       <div class="modal-photo" id="modal-photo"></div>
-      <h2 id="modal-name" style="margin:0 0 8px;color:var(--vhl-text)">Имя Фамилия</h2>
+      <h2 id="modal-name" style="margin:0 0 8px;color:var(--vhl-text)"></h2>
       <p style="margin:0 0 16px;color:var(--vhl-gray)">
         <strong>Позиция:</strong> <span id="modal-pos">—</span> | <strong>Класс:</strong> <span id="modal-class">—</span>
       </p>
@@ -741,60 +596,52 @@
         </div>
       </div>
       <div id="modal-contact" class="contact-row" style="display:none">
-        <strong>Связаться с игроком:</strong><br>
-        <span id="modal-phone" style="font-size:1.1rem;color:var(--vhl-accent);font-weight:700"></span>
+        <strong>Связаться с игроком:</strong><br><span id="modal-phone" style="font-size:1.1rem;color:var(--vhl-accent);font-weight:700"></span>
       </div>
       <div class="modal-stat-block">
-        <h3>Статистика</h3>
-        <p id="modal-stat" class="modal-stat-text">—</p>
+        <h3>Статистика (сезон не начался)</h3>
+        <p id="modal-stat" class="modal-stat-text">
+          Матчи: —<br>
+          Голы: —<br>
+          Пасы: —<br>
+          Сэйвы: —
+        </p>
       </div>
     </div>
   </div>
 
-  <div class="edit-badge" id="edit-badge" style="display:none">Режим редактирования</div>
-
   <script>
-    // Полные данные игроков (без обрывов)
     const playersData = {
-      '7А': [
-        {name:'Иванов Иван',pos:'Нападающий',num:9,dob:2013,transfer:'6А → 7А',stats:{matches:'12',goals:'8',assists:'3'},contactPhone:'-'}
-      ],
+      '7А': [],
       '7Б': [
-        {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'5',assists:'2'},contactPhone:'-'},
-        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'0',assists:'1'},contactPhone:'-'},
-        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'4',assists:'2'},photo:'ekf.jpg',contactPhone:'-'}
+        {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'},
+        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',photo:'-',contactPhone:'-'},
+        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',photo:'ekf.jpg',contactPhone:'-'}
       ],
-      '7В': [
-        {name:'Петров Петр',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7В',stats:{matches:'10',saves:'25',conceded:'8'},contactPhone:'-'},
-        {name:'Сидоров Сидор',pos:'Полузащитник',num:8,dob:2013,transfer:'6В → 7В',stats:{matches:'10',goals:'2',assists:'5'},contactPhone:'-'}
-      ],
-      '7Г': [
-        {name:'Кузнецов Кузьма',pos:'Защитник',num:4,dob:2013,transfer:'6Г → 7Г',stats:{matches:'10',goals:'1',assists:'0'},contactPhone:'-'}
-      ],
+      '7В': [],
+      '7Г': [],
       '7Д': [
-        {name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',stats:{matches:'12',goals:'7',assists:'4'},photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},
-        {name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'5',assists:'6'},photo:'pos.jpg',contactPhone:'-'},
-        {name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'1',assists:'2'},photo:'gran.jpg',contactPhone:'-'},
-        {name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'0',assists:'1'},photo:'kly.jpg',contactPhone:'-'},{name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',stats:{matches:'12',saves:'30',conceded:'10'},photo:'smirn.jpg',contactPhone:'-'}
+        {name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},
+        {name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',photo:'pos.jpg',contactPhone:'-'},
+        {name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',photo:'gran.jpg',contactPhone:'-'},
+        {name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',photo:'kly.jpg',contactPhone:'-'},
+        {name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',photo:'smirn.jpg',contactPhone:'-'}
       ],
       '7Е': [
-        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'1',assists:'0'},contactPhone:'-'},
-        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'0',assists:'1'},contactPhone:'-'},
-        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'3',assists:'2'},contactPhone:'-'},
-        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'4',assists:'1'},contactPhone:'-'},
-        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',saves:'20',conceded:'12'},contactPhone:'-'}
+        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'}
       ],
-      '7Ж': [
-        {name:'Федоров Федор',pos:'Полузащитник',num:10,dob:2013,transfer:'6Ж → 7Ж',stats:{matches:'8',goals:'3',assists:'4'},contactPhone:'-'}
-      ],
-      '7З': [
-        {name:'Яковлев Яков',pos:'Нападающий',num:9,dob:2013,transfer:'6З → 7З',stats:{matches:'8',goals:'5',assists:'2'},contactPhone:'-'}
-      ]
+      '7Ж': [],
+      '7З': []
     };
 
     const itemsPerPage = 8;
     let currentPage = 1;
-    let currentClass = '7Д';// --- Вкладки классов (сверху) ---
+    let currentClass = '7Д';
+
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -805,11 +652,11 @@
       });
     });
 
-    // --- Модальное окно выбора класса (Мой клуб) ---
     const selectOverlay = document.getElementById('class-select-overlay');
     const selectClose = document.getElementById('close-select-modal');
     const classGrid = document.getElementById('class-grid');
-    const trigger = document.getElementById('my-club-trigger');// Генерация кнопок классов
+    const trigger = document.getElementById('my-club-trigger');
+
     const classes = ['7А', '7Б', '7В', '7Г', '7Д', '7Е', '7Ж', '7З'];
     classes.forEach(cls => {
       const btn = document.createElement('button');
@@ -830,63 +677,43 @@
 
     selectClose.addEventListener('click', () => {
       selectOverlay.classList.remove('show');
-    });selectOverlay.addEventListener('click', (e) => {
-      if (e.target === selectOverlay) selectOverlay.classList.remove('show');
     });
 
-    // --- Landing Page ---
-    const landing = document.getElementById('landing');
-    const devLogin = document.getElementById('dev-login');
-    const btnGuest = document.getElementById('btn-guest');
-    const btnDev = document.getElementById('btn-dev');
-    const loginForm = document.querySelector('.login-form');
-    const err = document.getElementById('err');
-
-    btnGuest.addEventListener('click', () => {
-      landing.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    btnDev.addEventListener('click', () => {
-      devLogin.style.display = 'block';
-      btnDev.style.display = 'none';
-      btnGuest.style.display = 'none';
-    });loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const pass = document.getElementById('pass').value;
-      if (pass === 'admin') {
-        landing.style.display = 'none';
-        document.body.style.overflow = '';
-        document.getElementById('edit-badge').style.display = 'block';
-      } else {
-        err.style.display = 'block';
+    selectOverlay.addEventListener('click', (e) => {
+      if (e.target === selectOverlay) {
+        selectOverlay.classList.remove('show');
       }
-    });// --- Рендер игроков ---
+    });
+
     function renderPlayers() {
       const grid = document.getElementById('players-grid');
-      const players = playersData[currentClass] || ;
+      const players = playersData[currentClass] || [];
       const start = (currentPage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
-      const paginatedPlayers = players.slice(start, end);
-
-      grid.innerHTML = '';
+      const paginatedPlayers = players.slice(start, end);grid.innerHTML = '';
+      if (paginatedPlayers.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--vhl-gray); padding: 40px;">Нет состава на сезон</div>';
+        document.getElementById('pagination').innerHTML = '';
+        return;
+      }
       paginatedPlayers.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
         card.onclick = () => openPlayerModal(player);
         card.innerHTML = `
-          <div class="player-num">\${player.num}</div>
-          <div class="player-name">\${player.name}</div>
-          <div class="player-pos">\${player.pos}</div>
+          <div class="player-num">${player.num}</div>
+          <div class="player-name">${player.name}</div>
+          <div class="player-pos">${player.pos}</div>
         `;
         grid.appendChild(card);
       });
 
       renderPagination(players.length);
-    }// --- Пагинация ---
-    function renderPagination(total) {
+    }
+
+    function renderPagination(totalPlayers) {
       const container = document.getElementById('pagination');
-      const totalPages = Math.ceil(total / itemsPerPage);
+      const totalPages = Math.ceil(totalPlayers / itemsPerPage);
       container.innerHTML = '';
 
       if (totalPages <= 1) return;
@@ -901,86 +728,69 @@
         };
         container.appendChild(btn);
       }
-    }// --- Таблица лиги ---
+    }
+
     function renderTable() {
       const tbody = document.getElementById('league-table');
       tbody.innerHTML = '';
       classes.forEach(cls => {
-        const players = playersData[cls] || ;
-        const matches = players.reduce((sum, p) => sum + (parseInt(p.stats.matches) || 0), 0);
-        const wins = players.reduce((sum, p) => sum + (parseInt(p.stats.goals) || 0), 0); // Условно
-        const draws = Math.floor(matches / 3);
-        const losses = matches - wins - draws;
-        const points = wins * 3 + draws;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>\${cls}</td>
-          <td>\${matches}</td>
-          <td>\${wins}</td>
-          <td>\${draws}</td>
-          <td>\${losses}</td>
-          <td>\${points}</td>
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${cls}</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
         `;
-        tbody.appendChild(row);
+        tbody.appendChild(tr);
       });
-    }// --- Модальное окно игрока ---
-    const playerModal = document.getElementById('player-modal');
-    const closePlayerModal = document.getElementById('close-modal');
-    const modalPhoto = document.getElementById('modal-photo');
-    const modalName = document.getElementById('modal-name');
-    const modalPos = document.getElementById('modal-pos');
-    const modalClass = document.getElementById('modal-class');
-    const modalNum = document.getElementById('modal-num');
-    const modalDob = document.getElementById('modal-dob');
-    const modalAge = document.getElementById('modal-age');
-    const modalTransfer = document.getElementById('modal-transfer');
-    const modalContact = document.getElementById('modal-contact');
-    const modalPhone = document.getElementById('modal-phone');
-    const modalStat = document.getElementById('modal-stat');
-
-    function openPlayerModal(player) {
-      const now = new Date();
-      const age = now.getFullYear() - player.dob;modalName.textContent = player.name;
-      modalPos.textContent = player.pos;
-      modalClass.textContent = currentClass;
-      modalNum.textContent = player.num;
-      modalDob.textContent = player.dob;
-      modalAge.textContent = age;
-      modalTransfer.textContent = player.transfer;
-
-      if (player.photo) {
-        modalPhoto.innerHTML = `<img src="${player.photo}" alt="${player.name}" />`;
-      } else {
-        modalPhoto.innerHTML = '<div class="modal-placeholder">Фото отсутствует</div>';
-      }
-
-      if (player.contactPhone && player.contactPhone !== '-') {
-        modalContact.style.display = 'block';
-        modalPhone.textContent = player.contactPhone;
-      } else {
-        modalContact.style.display = 'none';
-      }const stats = player.stats;
-      if (stats.matches) {
-        modalStat.textContent = `Матчи: \${stats.matches}`;
-        if (stats.goals) modalStat.textContent += ` | Голы: \${stats.goals}`;
-        if (stats.assists) modalStat.textContent += ` | Пасы: \${stats.assists}`;
-        if (stats.saves) modalStat.textContent += ` | Сейвы: \${stats.saves}`;
-        if (stats.conceded) modalStat.textContent += ` | Пропущено: \${stats.conceded}`;
-      } else {
-        modalStat.textContent = 'Статистика недоступна';
-      }
-
-      playerModal.classList.add('show');
     }
 
-    closePlayerModal.addEventListener('click', () => {
-      playerModal.classList.remove('show');
+    function openPlayerModal(player) {
+      const modal = document.getElementById('player-modal');
+      const photo = document.getElementById('modal-photo');
+      document.getElementById('modal-name').textContent = player.name;
+      document.getElementById('modal-pos').textContent = player.pos;
+      document.getElementById('modal-class').textContent = currentClass;
+      document.getElementById('modal-num').textContent = player.num;
+      document.getElementById('modal-dob').textContent = player.dob;
+      document.getElementById('modal-age').textContent = new Date().getFullYear() - player.dob;
+      document.getElementById('modal-transfer').textContent = player.transfer;
+      document.getElementById('modal-stat').innerHTML = 'Матчи: —<br>Голы: —<br>Пасы: —<br>Сэйвы: —';
+
+      const contactRow = document.getElementById('modal-contact');
+      if (player.contactPhone && player.contactPhone !== '-') {
+        contactRow.style.display = 'block';
+        document.getElementById('modal-phone').textContent = player.contactPhone;
+      } else {
+        contactRow.style.display = 'none';
+      }
+
+      photo.innerHTML = '';
+      if (player.photo && player.photo !== '-') {
+        const img = document.createElement('img');
+        img.src = player.photo;
+        img.alt = player.name;
+        photo.appendChild(img);
+      } else {
+        photo.innerHTML = '<span class="modal-placeholder">Фото не загружено</span>';
+      }
+
+      modal.classList.add('show');
+    }
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+      document.getElementById('player-modal').classList.remove('show');
     });
 
-    playerModal.addEventListener('click', (e) => {
-      if (e.target === playerModal) playerModal.classList.remove('show');
-    });// --- Инициализация ---
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('player-modal').classList.remove('show');
+        document.getElementById('class-select-overlay').classList.remove('show');
+      }});
+
+    // Инициализация при загрузке
     renderPlayers();
     renderTable();
   </script>
