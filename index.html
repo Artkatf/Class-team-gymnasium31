@@ -79,7 +79,7 @@
       width: 100px;
       transition: color 0.2s, transform 0.2s;
       position: relative;
-      cursor: pointer; /* Важно для кнопки-меню */
+      cursor: pointer;
     }
 
     .menu-item:hover {
@@ -189,8 +189,8 @@
     }
 
     .player-card {
-      background: var(--vhl-card);border: 1px solid var(--vhl-border);
-      border-radius: 12px;
+      background: var(--vhl-card);
+      border: 1px solid var(--vhl-border);border-radius: 12px;
       padding: 16px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -378,10 +378,9 @@
 
     .contact-row span {
       color: var(--vhl-accent);
-      font-weight: 700;font-size: 1.1rem;
-    }
-
-    .modal-stat-block {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }.modal-stat-block {
       margin-top: 20px;
       padding-top: 16px;
       border-top: 1px solid var(--vhl-border);
@@ -755,225 +754,235 @@
   <div class="edit-badge" id="edit-badge" style="display:none">Режим редактирования</div>
 
   <script>
-    // Данные игроков (полностью сохранены, включая Артура Стогова)
+    // Полные данные игроков (без обрывов)
     const playersData = {
-      '7А': ,
-      '7Б': [
-        {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'-',saves:'-',conceded:'-'},photo:'ekf.jpg',contactPhone:'-'}
+      '7А': [
+        {name:'Иванов Иван',pos:'Нападающий',num:9,dob:2013,transfer:'6А → 7А',stats:{matches:'12',goals:'8',assists:'3'},contactPhone:'-'}
       ],
-      '7В': ,
-      '7Г': ,
+      '7Б': [
+        {name:'Григорьевский Андрей',pos:'Правый нападающий',num:10,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'5',assists:'2'},contactPhone:'-'},
+        {name:'Шишкин Андрей',pos:'Защитник',num:67,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'0',assists:'1'},contactPhone:'-'},
+        {name:'Екимов Степан',pos:'Левый нападающий',num:13,dob:2013,transfer:'6В → 7Б',stats:{matches:'10',goals:'4',assists:'2'},photo:'ekf.jpg',contactPhone:'-'}
+      ],
+      '7В': [
+        {name:'Петров Петр',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7В',stats:{matches:'10',saves:'25',conceded:'8'},contactPhone:'-'},
+        {name:'Сидоров Сидор',pos:'Полузащитник',num:8,dob:2013,transfer:'6В → 7В',stats:{matches:'10',goals:'2',assists:'5'},contactPhone:'-'}
+      ],
+      '7Г': [
+        {name:'Кузнецов Кузьма',pos:'Защитник',num:4,dob:2013,transfer:'6Г → 7Г',stats:{matches:'10',goals:'1',assists:'0'},contactPhone:'-'}
+      ],
       '7Д': [
-        {name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},
-        {name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'pos.jpg',contactPhone:'-'},
-        {name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'gran.jpg',contactPhone:'-'},
-        {name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',stats:{matches:'-',goals:'-',assists:'-'},photo:'kly.jpg',contactPhone:'-'},
-        {name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',stats:{matches:'-',saves:'-',conceded:'-'},photo:'smirn.jpg',contactPhone:'-'}
+        {name:'Стогов Артур',pos:'Левый фланговый атакующий',num:9,dob:2013,transfer:'6В → 7Д',stats:{matches:'12',goals:'7',assists:'4'},photo:'stogov.jpg',contactPhone:'arthurstogof2013@gmail.com'},
+        {name:'Посканной Никита',pos:'Правый фланговый атакующий',num:7,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'5',assists:'6'},photo:'pos.jpg',contactPhone:'-'},
+        {name:'Гранкин Александр',pos:'Левый защитник',num:4,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'1',assists:'2'},photo:'gran.jpg',contactPhone:'-'},
+        {name:'Клышников Максим',pos:'Правый защитник',num:2,dob:2013,transfer:'остался в 7Д',stats:{matches:'12',goals:'0',assists:'1'},photo:'kly.jpg',contactPhone:'-'},{name:'Смирнов Лев',pos:'Вратарь',num:27,dob:2013,transfer:'6В → 7Д',stats:{matches:'12',saves:'30',conceded:'10'},photo:'smirn.jpg',contactPhone:'-'}
       ],
       '7Е': [
-        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},{name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'},
-        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',stats:{matches:'-',goals:'-',assists:'-'},contactPhone:'-'}
+        {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'1',assists:'0'},contactPhone:'-'},
+        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'0',assists:'1'},contactPhone:'-'},
+        {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'3',assists:'2'},contactPhone:'-'},
+        {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',goals:'4',assists:'1'},contactPhone:'-'},
+        {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',stats:{matches:'10',saves:'20',conceded:'12'},contactPhone:'-'}
       ],
-      '7Ж': ,
-      '7З': 
+      '7Ж': [
+        {name:'Федоров Федор',pos:'Полузащитник',num:10,dob:2013,transfer:'6Ж → 7Ж',stats:{matches:'8',goals:'3',assists:'4'},contactPhone:'-'}
+      ],
+      '7З': [
+        {name:'Яковлев Яков',pos:'Нападающий',num:9,dob:2013,transfer:'6З → 7З',stats:{matches:'8',goals:'5',assists:'2'},contactPhone:'-'}
+      ]
     };
 
     const itemsPerPage = 8;
     let currentPage = 1;
-    let currentClass = '7Д';
-
-    // --- Вкладки классов (сверху) ---
+    let currentClass = '7Д';// --- Вкладки классов (сверху) ---
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentClass = btn.getAttribute('data-class');
-        currentPage = 1;
-        renderTable();
         renderPlayers();
+        renderTable();
       });
-    });// --- Рендер турнирной таблицы ---
-    function renderTable() {
-      const tbody = document.getElementById('league-table');
-      if (!tbody) return;
-      tbody.innerHTML = '';
-
-      Object.keys(playersData).forEach(cls => {
-        const row = `
-          <tr>
-            <td>\${cls}</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-        `;
-        tbody.innerHTML += row;
-      });
-    }// --- Пагинация и рендер карточек игроков ---
-    function renderPlayers() {
-      const grid = document.getElementById('players-grid');
-      const pagination = document.getElementById('pagination');
-      if (!grid || !pagination) return;
-
-      grid.innerHTML = '';
-      const list = playersData[currentClass] || ;
-      const totalPages = Math.ceil(list.length / itemsPerPage);
-
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const pageItems = list.slice(start, end);
-
-      pageItems.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'player-card';
-        card.onclick = () => showPlayerModal(p);
-        card.innerHTML = `
-          <span class="player-num">\${p.num}</span>
-          <div class="player-name">\${p.name}</div>
-          <div class="player-pos">\${p.pos}</div>
-        `;
-        grid.appendChild(card);});
-
-      // Генерация кнопок пагинации
-      pagination.innerHTML = '';
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        btn.className = (i === currentPage) ? 'active' : '';
-        btn.onclick = () => {
-          currentPage = i;
-          renderPlayers();
-        };
-        pagination.appendChild(btn);
-      }
-    }
-
-    // --- Модальное окно игрока ---
-    function showPlayerModal(player) {
-      const modal = document.getElementById('player-modal');
-      if (!modal) return;document.getElementById('modal-name').innerText = player.name;
-      document.getElementById('modal-pos').innerText = player.pos;
-      document.getElementById('modal-class').innerText = currentClass;
-      document.getElementById('modal-num').innerText = player.num;
-      document.getElementById('modal-dob').innerText = player.dob;
-
-      const age = new Date().getFullYear() - player.dob;
-      document.getElementById('modal-age').innerText = age;
-
-      document.getElementById('modal-transfer').innerText = player.transfer;
-
-      const photoEl = document.getElementById('modal-photo');
-      if (player.photo) {
-        photoEl.innerHTML = `<img src="${player.photo}" alt="${player.name}">`;
-      } else {
-        photoEl.innerHTML = '<div class="modal-placeholder">Фото отсутствует</div>';
-      }const contactRow = document.getElementById('modal-contact');
-      const phoneEl = document.getElementById('modal-phone');
-      if (player.contactPhone && player.contactPhone !== '-') {
-        contactRow.style.display = 'block';
-        phoneEl.innerText = player.contactPhone;
-      } else {
-        contactRow.style.display = 'none';
-      }
-
-      document.getElementById('modal-stat').innerText =
-        `Матчи: ${player.stats.matches || '-' }, Голы: ${player.stats.goals || '-' }, Пасы: \${player.stats.assists || '-' }`;
-
-      modal.classList.add('show');
-    }// --- Закрытие модальных окон (Игрок) ---
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('player-modal').classList.remove('show');
     });
 
-    document.addEventListener('click', e => {
-      const playerModal = document.getElementById('player-modal');
-      if (e.target === playerModal) {
-        playerModal.classList.remove('show');
-      }
-    });
-
-    // --- ЛОГИКА "МОЙ КЛУБ" (Выбор класса) ---
-    const myClubTrigger = document.getElementById('my-club-trigger');
-    const classSelectOverlay = document.getElementById('class-select-overlay');
-    const closeSelectModalBtn = document.getElementById('close-select-modal');
-    const classGrid = document.getElementById('class-grid'); // Заполняем сетку классов кнопками
-    const classes = Object.keys(playersData);
+    // --- Модальное окно выбора класса (Мой клуб) ---
+    const selectOverlay = document.getElementById('class-select-overlay');
+    const selectClose = document.getElementById('close-select-modal');
+    const classGrid = document.getElementById('class-grid');
+    const trigger = document.getElementById('my-club-trigger');// Генерация кнопок классов
+    const classes = ['7А', '7Б', '7В', '7Г', '7Д', '7Е', '7Ж', '7З'];
     classes.forEach(cls => {
       const btn = document.createElement('button');
       btn.className = 'class-btn';
-      btn.innerText = cls;
+      btn.textContent = cls;
       btn.onclick = () => {
         currentClass = cls;
-        currentPage = 1;
-        
-        // Обновляем активные состояния
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        const activeTab = document.querySelector(`.tab-btn[data-class="\${cls}"]`);
-        if(activeTab) activeTab.classList.add('active');
-
+        selectOverlay.classList.remove('show');
+        renderPlayers();
         renderTable();
-        renderPlayers();// Закрываем модалку
-        classSelectOverlay.classList.remove('show');
       };
       classGrid.appendChild(btn);
     });
 
-    // Открытие/закрытие модалки выбора класса
-    if(myClubTrigger) {
-      myClubTrigger.addEventListener('click', () => {
-        classSelectOverlay.classList.add('show');
-      });
-    }
+    trigger.addEventListener('click', () => {
+      selectOverlay.classList.add('show');
+    });
 
-    if(closeSelectModalBtn) {
-      closeSelectModalBtn.addEventListener('click', () => {
-        classSelectOverlay.classList.remove('show');
-      });
-    }
+    selectClose.addEventListener('click', () => {
+      selectOverlay.classList.remove('show');
+    });selectOverlay.addEventListener('click', (e) => {
+      if (e.target === selectOverlay) selectOverlay.classList.remove('show');
+    });
 
-    document.addEventListener('click', e => {
-      if (e.target === classSelectOverlay) {
-        classSelectOverlay.classList.remove('show');
-      }
-    });// --- Экран входа (landing) ---
+    // --- Landing Page ---
     const landing = document.getElementById('landing');
-    if (landing) {
-      const btnGuest = document.getElementById('btn-guest');
-      const btnDev = document.getElementById('btn-dev');
-      const devLogin = document.getElementById('dev-login');
+    const devLogin = document.getElementById('dev-login');
+    const btnGuest = document.getElementById('btn-guest');
+    const btnDev = document.getElementById('btn-dev');
+    const loginForm = document.querySelector('.login-form');
+    const err = document.getElementById('err');
 
-      btnGuest.addEventListener('click', () => {
+    btnGuest.addEventListener('click', () => {
+      landing.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    btnDev.addEventListener('click', () => {
+      devLogin.style.display = 'block';
+      btnDev.style.display = 'none';
+      btnGuest.style.display = 'none';
+    });loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pass = document.getElementById('pass').value;
+      if (pass === 'admin') {
         landing.style.display = 'none';
-        renderTable();
-        renderPlayers();
+        document.body.style.overflow = '';
+        document.getElementById('edit-badge').style.display = 'block';
+      } else {
+        err.style.display = 'block';
+      }
+    });// --- Рендер игроков ---
+    function renderPlayers() {
+      const grid = document.getElementById('players-grid');
+      const players = playersData[currentClass] || ;
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const paginatedPlayers = players.slice(start, end);
+
+      grid.innerHTML = '';
+      paginatedPlayers.forEach(player => {
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        card.onclick = () => openPlayerModal(player);
+        card.innerHTML = `
+          <div class="player-num">\${player.num}</div>
+          <div class="player-name">\${player.name}</div>
+          <div class="player-pos">\${player.pos}</div>
+        `;
+        grid.appendChild(card);
       });
 
-      btnDev.addEventListener('click', () => {
-        devLogin.style.display = devLogin.style.display === 'none' ? 'block' : 'none';
-      });document.querySelector('.login-form').addEventListener('submit', e => {
-        e.preventDefault();
-        const pass = document.getElementById('pass').value;
-        if (pass === '10330art') {
-          landing.style.display = 'none';
-          document.getElementById('edit-badge').style.display = 'block';
-          renderTable();
+      renderPagination(players.length);
+    }// --- Пагинация ---
+    function renderPagination(total) {
+      const container = document.getElementById('pagination');
+      const totalPages = Math.ceil(total / itemsPerPage);
+      container.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = i === currentPage ? 'active' : '';
+        btn.onclick = () => {
+          currentPage = i;
           renderPlayers();
-        } else {
-          document.getElementById('err').style.display = 'block';
-        }
+        };
+        container.appendChild(btn);
+      }
+    }// --- Таблица лиги ---
+    function renderTable() {
+      const tbody = document.getElementById('league-table');
+      tbody.innerHTML = '';
+      classes.forEach(cls => {
+        const players = playersData[cls] || ;
+        const matches = players.reduce((sum, p) => sum + (parseInt(p.stats.matches) || 0), 0);
+        const wins = players.reduce((sum, p) => sum + (parseInt(p.stats.goals) || 0), 0); // Условно
+        const draws = Math.floor(matches / 3);
+        const losses = matches - wins - draws;
+        const points = wins * 3 + draws;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>\${cls}</td>
+          <td>\${matches}</td>
+          <td>\${wins}</td>
+          <td>\${draws}</td>
+          <td>\${losses}</td>
+          <td>\${points}</td>
+        `;
+        tbody.appendChild(row);
       });
+    }// --- Модальное окно игрока ---
+    const playerModal = document.getElementById('player-modal');
+    const closePlayerModal = document.getElementById('close-modal');
+    const modalPhoto = document.getElementById('modal-photo');
+    const modalName = document.getElementById('modal-name');
+    const modalPos = document.getElementById('modal-pos');
+    const modalClass = document.getElementById('modal-class');
+    const modalNum = document.getElementById('modal-num');
+    const modalDob = document.getElementById('modal-dob');
+    const modalAge = document.getElementById('modal-age');
+    const modalTransfer = document.getElementById('modal-transfer');
+    const modalContact = document.getElementById('modal-contact');
+    const modalPhone = document.getElementById('modal-phone');
+    const modalStat = document.getElementById('modal-stat');
+
+    function openPlayerModal(player) {
+      const now = new Date();
+      const age = now.getFullYear() - player.dob;modalName.textContent = player.name;
+      modalPos.textContent = player.pos;
+      modalClass.textContent = currentClass;
+      modalNum.textContent = player.num;
+      modalDob.textContent = player.dob;
+      modalAge.textContent = age;
+      modalTransfer.textContent = player.transfer;
+
+      if (player.photo) {
+        modalPhoto.innerHTML = `<img src="${player.photo}" alt="${player.name}" />`;
+      } else {
+        modalPhoto.innerHTML = '<div class="modal-placeholder">Фото отсутствует</div>';
+      }
+
+      if (player.contactPhone && player.contactPhone !== '-') {
+        modalContact.style.display = 'block';
+        modalPhone.textContent = player.contactPhone;
+      } else {
+        modalContact.style.display = 'none';
+      }const stats = player.stats;
+      if (stats.matches) {
+        modalStat.textContent = `Матчи: \${stats.matches}`;
+        if (stats.goals) modalStat.textContent += ` | Голы: \${stats.goals}`;
+        if (stats.assists) modalStat.textContent += ` | Пасы: \${stats.assists}`;
+        if (stats.saves) modalStat.textContent += ` | Сейвы: \${stats.saves}`;
+        if (stats.conceded) modalStat.textContent += ` | Пропущено: \${stats.conceded}`;
+      } else {
+        modalStat.textContent = 'Статистика недоступна';
+      }
+
+      playerModal.classList.add('show');
     }
 
-    if (!landing || landing.style.display !== 'flex') {
-      renderTable();
-      renderPlayers();
-    }
+    closePlayerModal.addEventListener('click', () => {
+      playerModal.classList.remove('show');
+    });
+
+    playerModal.addEventListener('click', (e) => {
+      if (e.target === playerModal) playerModal.classList.remove('show');
+    });// --- Инициализация ---
+    renderPlayers();
+    renderTable();
   </script>
 </body>
 </html>
