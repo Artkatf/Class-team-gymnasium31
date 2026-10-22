@@ -191,124 +191,72 @@
       cursor: pointer;transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
     }
 
     .player-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      border-color: var(--vhl-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .player-num {
-      font-size: 2.2rem;
-      font-weight: 800;
+      font-size: 1.4rem;
+      font-weight: bold;
       color: var(--vhl-accent);
-      background: var(--vhl-num-bg);
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      border: 1px solid #333;
+      margin-bottom: 8px;
     }
 
     .player-name {
-      font-size: 1rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 4px;
-      color: var(--vhl-text);
     }
 
     .player-pos {
       font-size: 0.8rem;
       color: var(--vhl-gray);
-      line-height: 1.2;
-      max-width: 100%;
-      word-wrap: break-word;
     }
 
-    .pagination {
-      margin-top: 24px;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pagination button {
-      padding: 6px 12px;
-      border: 1px solid var(--vhl-border);
-      background: var(--vhl-card);
-      color: var(--vhl-gray);
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 0.85rem;
-    }
-
-    .pagination button.active {
-      background: var(--vhl-accent);
-      color: #000;
-      border-color: var(--vhl-accent);
-    }
-
-    .pagination button:hover:not(.active) {
-      border-color: var(--vhl-accent);
-      color: var(--vhl-text);
-    }
-
+    /* Модальное окно */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
+      inset: 0;
+      background: rgba(0,0,0,0.8);
       display: none;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 1000;
-      padding: 16px;
-      backdrop-filter: blur(4px);
     }
-
     .modal-overlay.show {
       display: flex;
     }
 
     .modal {
       background: var(--vhl-card);
-      width: 100%;
-      max-width: 600px;
-      padding: 24px;
-      border-radius: 16px;
-      position: relative;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
       border: 1px solid var(--vhl-border);
-      max-height: 90vh;
-      overflow-y: auto;
+      border-radius: 16px;
+      padding: 24px;
+      width: 560px;
+      position: relative;
     }
 
     .close-modal {
       position: absolute;
-      top: 16px;
+      top: 12px;
       right: 16px;
       background: none;
       border: none;
+      color: var(--vhl-gray);
       font-size: 1.5rem;
       cursor: pointer;
-      color: var(--vhl-gray);
-      line-height: 1;
     }
 
     .close-modal:hover {
       color: var(--vhl-text);
     }
 
+    /* Фото 400x400 */
     .modal-photo {
-      width: 100%;
-      height: 240px;
+      width: 400px;
+      height: 400px;
       background: #111;
       border-radius: 12px;
       margin: 0 auto 16px;
@@ -327,7 +275,6 @@
 
     .modal-placeholder {
       color: var(--vhl-gray);
-      font-size: 0.9rem;
     }
 
     .modal-info-row {
@@ -340,235 +287,96 @@
     .modal-field strong {
       display: block;
       color: var(--vhl-gray);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .modal-field span {
-      color: var(--vhl-text);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .contact-row {
-      margin-top: 20px;
-      padding: 16px;
-      background: #252930;
-      border-radius: 12px;
-      text-align: center;
-      border: 1px solid var(--vhl-border);
-    }
-
-    .contact-row strong {
-      color: var(--vhl-text);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .contact-row span {
-      color: var(--vhl-accent);
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    .modal-stat-block {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--vhl-border);
     }
 
     .modal-stat-block h3 {
-      margin: 0 0 12px;color: var(--vhl-text);
-      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 8px;
     }
 
     .modal-stat-text {
+      white-space: pre-wrap;
       color: var(--vhl-gray);
-      font-size: 0.9rem;
     }
 
-    .class-select-modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1001;
-      backdrop-filter: blur(4px);
-      padding: 16px;
-    }
-
-    .class-select-modal-overlay.show {
+    .pagination {
       display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      flex-wrap: wrap;
     }
 
-    .class-select-modal {
-      background: var(--vhl-card);
-      width: 100%;
-      max-width: 400px;
-      padding: 24px;
-      border-radius: 16px;
-      position: relative;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-      border: 1px solid var(--vhl-border);
-      text-align: center;
-    }
-
-    .class-select-modal h2 {
-      margin-top: 0;
-      color: var(--vhl-text);
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    .class-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .class-btn {
-      padding: 12px;
+    .pagination button {
+      padding: 6px 12px;
       border: 1px solid var(--vhl-border);
       background: var(--vhl-card);
       color: var(--vhl-gray);
       cursor: pointer;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: all 0.2s;
+      border-radius: 6px;
     }
 
-    .class-btn:hover {
-      border-color: var(--vhl-accent);
-      color: var(--vhl-text);
-      background: #252930;
-    }
-
-    .class-btn.active {
+    .pagination button.active {
       background: var(--vhl-accent);
       color: #000;
       border-color: var(--vhl-accent);
     }
-
-    .close-select-modal {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--vhl-gray);
-      line-height: 1;
-    }
-
-    .close-select-modal:hover {
-      color: var(--vhl-text);
-    }
-
-    @media (max-width: 600px) {
-      .modal-photo {
-        height: 200px;
-      }
-      .modal-info-row {
-        grid-template-columns: 1fr;
-      }
-      .main-menu {
-        gap: 16px;
-      }
-      .menu-item {
-        width: 80px;
-      }
-      .menu-icon {
-        width: 36px;
-        height: 36px;
-      }
-    }
   </style>
 </head>
 <body>
-  <nav class="main-menu">
-    <a href="index.html" class="menu-item active">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 210-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg>
-      </div>
-      <span class="menu-label">Главная</span>
-    </a>
-    <a href="matches.html" class="menu-item">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-      </div>
-      <span class="menu-label">Матчи</span>
-    </a>
-    <div class="menu-item" id="my-club-trigger" style="cursor:pointer;">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-4 1.5-2h5L11 17zm1-4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-      </div>
-      <span class="menu-label">Мой клуб</span>
-    </div>
-    <a href="stats.html" class="menu-item">
-      <div class="menu-icon">
-        <svg viewBox="0 0 24 24"><path d="M16 11.41l-4-4H7l5 5v5h4v-4zM21 16V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0h-3v-2h3v2zm-4 0h-3v-2h3v2zm-4 0H5v-6h11v2h-3v3z"/></svg>
-      </div>
-      <span class="menu-label">Статистика</span>
-    </a>
-  </nav>
-
-  <div class="class-select-modal-overlay" id="class-select-overlay">
-    <div class="class-select-modal">
-      <button class="close-select-modal" id="close-select-modal">&times;</button>
-      <h2>Выберите свой класс</h2>
-      <div class="class-grid" id="class-grid"></div>
-    </div>
-  </div>
 
   <header>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
       <h1>Футбольные составы 7А–7З</h1>
-      <h1>2027 сезон (сезон ещё не начался)</h1>
+      <h1 style="font-size:1rem;color:var(--vhl-gray)">2027 сезон</h1>
     </div>
   </header>
 
+  <nav class="main-menu">
+    <button type="button" class="menu-item active" data-view="home">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5v5l5 2.5 5-2.5v-5l-5 2.5z"/></svg>
+      </div>
+      <span class="menu-label">Главная</span>
+    </button>
+
+    <button type="button" class="menu-item" data-view="matches">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+      </div>
+      <span class="menu-label">Матчи</span>
+    </button>
+
+    <button type="button" class="menu-item" data-view="stats">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 11.41l-4-4H7l5 5v5h4v-4zM21 16V4c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0h-3v-2h3v2zm-4 0h-3v-2h3v2zm-4 0H5v-6h11v2h-3v3z"/></svg>
+      </div>
+      <span class="menu-label">Статистика</span>
+    </button>
+  </nav><!-- Вкладки классов -->
   <div class="container">
     <nav class="class-tabs">
-      <button class="tab-btn" data-class="7А">7А</button>
+      <button class="tab-btn active" data-class="7А">7А</button>
       <button class="tab-btn" data-class="7Б">7Б</button>
       <button class="tab-btn" data-class="7В">7В</button>
       <button class="tab-btn" data-class="7Г">7Г</button>
-      <button class="tab-btn active" data-class="7Д">7Д</button>
+      <button class="tab-btn" data-class="7Д">7Д</button>
       <button class="tab-btn" data-class="7Е">7Е</button>
       <button class="tab-btn" data-class="7Ж">7Ж</button>
       <button class="tab-btn" data-class="7З">7З</button>
     </nav>
 
-    <div class="stats-table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Класс</th>
-            <th>Игр</th>
-            <th>Победы</th>
-            <th>Ничьи</th>
-            <th>Поражения</th>
-            <th>Очки</th>
-          </tr>
-        </thead>
-        <tbody id="league-table"></tbody>
-      </table>
+    <!-- Блок для контента (таблицы/матчи/статистика) -->
+    <div class="stats-table-wrapper" id="content-area">
+      <!-- Сюда JS будет подставлять нужный контент -->
     </div>
 
+    <!-- Сетка игроков (будет скрыта, когда не на вкладке Главная) -->
     <div class="players-grid" id="players-grid"></div>
     <div class="pagination" id="pagination"></div>
   </div>
 
+  <!-- Модальное окно игрока -->
   <div class="modal-overlay" id="player-modal">
     <div class="modal">
       <button class="close-modal" id="close-modal">&times;</button>
@@ -595,11 +403,11 @@
           <span id="modal-transfer">—</span>
         </div>
       </div>
-      <div id="modal-contact" class="contact-row" style="display:none">
-        <strong>Связаться с игроком:</strong><br><span id="modal-phone" style="font-size:1.1rem;color:var(--vhl-accent);font-weight:700"></span>
-      </div>
-      <div class="modal-stat-block">
-        <h3>Статистика (сезон не начался)</h3>
+      <div id="modal-contact" class="contact-row" style="display:none;margin-bottom:16px">
+        <strong>Связаться с игроком:</strong><br>
+        <span id="modal-phone" style="font-size:1.1rem;color:var(--vhl-accent);font-weight:700"></span>
+      </div><div class="modal-stat-block">
+        <h3>Статистика (сезон не стартовал)</h3>
         <p id="modal-stat" class="modal-stat-text">
           Матчи: —<br>
           Голы: —<br>
@@ -629,7 +437,7 @@
       ],
       '7Е': [
         {name:'Иванов Семён',pos:'Центральный защитник',num:4,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
-        {name:'Москвин Павел',pos:'Центральный защитник',num:500,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
+        {name:'Москвин Павел',pos:'Центральный защитник',num:5,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Рудаков Константин',pos:'Левый нападающий',num:67,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Новопашин Тимофей',pos:'Правый нападающий',num:6,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'},
         {name:'Шабалин Артём',pos:'Вратарь',num:1,dob:2013,transfer:'6В → 7Е',photo:'-',contactPhone:'-'}
@@ -641,7 +449,57 @@
     const itemsPerPage = 8;
     let currentPage = 1;
     let currentClass = '7Д';
+    let currentView = 'home';
 
+    // Переключение вкладок меню (Главная / Матчи / Статистика)
+    function switchView(view) {
+      currentView = view;
+      document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.menu-item'))
+        .find(el => el.getAttribute('data-view') === view);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const tabs = document.querySelector('.class-tabs');
+      const contentArea = document.getElementById('content-area');
+      const playersGrid = document.getElementById('players-grid');
+      const pagination = document.getElementById('pagination');
+
+      // Скрываем всё по умолчанию
+      if (tabs) tabs.style.display = 'none';
+      if (playersGrid) playersGrid.style.display = 'none';
+      if (pagination) pagination.style.display = 'none';
+
+      if (view === 'home') {
+        if (tabs) tabs.style.display = 'flex';
+        if (playersGrid) playersGrid.style.display = 'grid';
+        if (pagination) pagination.style.display = 'flex';
+        renderPlayers();
+        renderTable();
+      } else if (view === 'matches') {
+        contentArea.innerHTML = `
+          <div style="padding:24px;color:var(--vhl-text)">
+            <h3 style="margin:0 0 12px">Матчи</h3>
+            <p style="color:var(--vhl-gray)">Расписание появится ближе к старту сезона.</p>
+          </div>
+        `;
+      } else if (view === 'stats') {
+        const tableHtml = renderTableHTML();
+        contentArea.innerHTML = `
+          <div style="padding:24px;color:var(--vhl-text)">
+            <h3 style="margin:0 0 12px">Общая статистика</h3>
+            <p style="color:var(--vhl-gray)">Пока все показатели равны нулю — сезон не стартовал.</p>
+            ${tableHtml}
+          </div>
+        `;
+      }}
+
+    document.querySelectorAll('.menu-item[data-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchView(btn.getAttribute('data-view'));
+      });
+    });
+
+    // Вкладки классов
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -652,45 +510,14 @@
       });
     });
 
-    const selectOverlay = document.getElementById('class-select-overlay');
-    const selectClose = document.getElementById('close-select-modal');
-    const classGrid = document.getElementById('class-grid');
-    const trigger = document.getElementById('my-club-trigger');
-
-    const classes = ['7А', '7Б', '7В', '7Г', '7Д', '7Е', '7Ж', '7З'];
-    classes.forEach(cls => {
-      const btn = document.createElement('button');
-      btn.className = 'class-btn';
-      btn.textContent = cls;
-      btn.onclick = () => {
-        currentClass = cls;
-        selectOverlay.classList.remove('show');
-        renderPlayers();
-        renderTable();
-      };
-      classGrid.appendChild(btn);
-    });
-
-    trigger.addEventListener('click', () => {
-      selectOverlay.classList.add('show');
-    });
-
-    selectClose.addEventListener('click', () => {
-      selectOverlay.classList.remove('show');
-    });
-
-    selectOverlay.addEventListener('click', (e) => {
-      if (e.target === selectOverlay) {
-        selectOverlay.classList.remove('show');
-      }
-    });
-
     function renderPlayers() {
       const grid = document.getElementById('players-grid');
       const players = playersData[currentClass] || [];
       const start = (currentPage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
-      const paginatedPlayers = players.slice(start, end);grid.innerHTML = '';
+      const paginatedPlayers = players.slice(start, end);
+
+      grid.innerHTML = '';
       if (paginatedPlayers.length === 0) {
         grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--vhl-gray); padding: 40px;">Нет состава на сезон</div>';
         document.getElementById('pagination').innerHTML = '';
@@ -707,7 +534,6 @@
         `;
         grid.appendChild(card);
       });
-
       renderPagination(players.length);
     }
 
@@ -732,8 +558,9 @@
 
     function renderTable() {
       const tbody = document.getElementById('league-table');
+      if (!tbody) return;
       tbody.innerHTML = '';
-      classes.forEach(cls => {
+      ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'].forEach(cls => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${cls}</td>
@@ -745,6 +572,32 @@
         `;
         tbody.appendChild(tr);
       });
+    }
+
+    function renderTableHTML() {
+      let html = `<table style="width:100%;border-collapse:collapse;background:var(--vhl-card)}">
+        <thead>
+          <tr>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Класс</th>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Игр</th>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Победы</th>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Ничьи</th>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Поражения</th>
+            <th style="background:#252930;color:var(--vhl-gray);text-transform:uppercase;letter-spacing:0.5px">Очки</th>
+          </tr>
+        </thead>
+        <tbody>`;
+      ['7А','7Б','7В','7Г','7Д','7Е','7Ж','7З'].forEach(cls => {
+        html += `<tr style="border:1px solid var(--vhl-border)">
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">${cls}</td><td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+          <td style="border:1px solid var(--vhl-border);padding:10px 12px;text-align:center;font-size:0.85rem">—</td>
+        </tr>`;
+      });
+      html += `</tbody></table>`;
+      return html;
     }
 
     function openPlayerModal(player) {
@@ -787,12 +640,11 @@
     window.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         document.getElementById('player-modal').classList.remove('show');
-        document.getElementById('class-select-overlay').classList.remove('show');
-      }});
+      }
+    });
 
-    // Инициализация при загрузке
-    renderPlayers();
-    renderTable();
+    // Инициализация
+    switchView('home');
   </script>
 </body>
 </html>
